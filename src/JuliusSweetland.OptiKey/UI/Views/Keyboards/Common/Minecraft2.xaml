@@ -243,10 +243,14 @@
                                                         <models:KeyValue String="z" />
                                                     </controls:Key.Value>
                                                 </controls:Key>
-                                                
-                                                <controls:Key Grid.Row="5" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                                                </controls:Key>
 
+                                                <controls:Key Grid.Row="5" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2"
+                                                              SymbolGeometry="{StaticResource MinecraftLookWithCursor}"
+                                                              Text="{x:Static resx:Resources.MC_LOOK_GAZE}">
+                                                    <controls:Key.Value>
+                                                        <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MouseMagneticCursor}" />
+                                                    </controls:Key.Value>                                                
+                                                </controls:Key>
 
                                                 <controls:Key Grid.Row="1" Grid.Column="12" Grid.ColumnSpan="2" Grid.RowSpan="2"
                                                               SymbolGeometry="{StaticResource ArrowPointingToTopLeftIcon}"
