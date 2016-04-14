@@ -1270,11 +1270,12 @@ attack</value>
 auto-jump</value>
   </data>
   <data name="MC_CHEST" xml:space="preserve">
-    <value>Chest</value>
+    <value>Open 
+chest</value>
   </data>
   <data name="MC_CRAFTING_TABLE" xml:space="preserve">
-    <value>Crafting
-table</value>
+    <value>Open 
+crafting table</value>
   </data>
   <data name="MC_FLY_UP" xml:space="preserve">
     <value>Fly up</value>
@@ -1292,7 +1293,8 @@ item</value>
 input</value>
   </data>
   <data name="MC_INVENTORY" xml:space="preserve">
-    <value>Inventory</value>
+    <value>Open
+inventory</value>
   </data>
   <data name="MC_INVENTORY_KEYBOARD" xml:space="preserve">
     <value>Inventory

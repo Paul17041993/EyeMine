@@ -1499,7 +1499,8 @@ namespace JuliusSweetland.OptiKey.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chest.
+        ///   Looks up a localized string similar to Open 
+        ///chest.
         /// </summary>
         public static string MC_CHEST {
             get {
@@ -1508,8 +1509,8 @@ namespace JuliusSweetland.OptiKey.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Crafting
-        ///table.
+        ///   Looks up a localized string similar to Open 
+        ///crafting table.
         /// </summary>
         public static string MC_CRAFTING_TABLE {
             get {
@@ -1557,7 +1558,8 @@ namespace JuliusSweetland.OptiKey.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Inventory.
+        ///   Looks up a localized string similar to Open
+        ///inventory.
         /// </summary>
         public static string MC_INVENTORY {
             get {
