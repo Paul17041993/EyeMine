@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows;
 using JuliusSweetland.OptiKey.Enums;
 
 namespace JuliusSweetland.OptiKey.Services
@@ -13,6 +12,7 @@ namespace JuliusSweetland.OptiKey.Services
 
         void Expand(ExpandToDirections direction, double amountInPx);
         double GetOpacity();
+        void Hide();
         void IncrementOrDecrementOpacity(bool increment);
         void Maximise();
         void Minimise();
@@ -22,6 +22,5 @@ namespace JuliusSweetland.OptiKey.Services
         void Restore();
         void SetOpacity(double opacity);
         void Shrink(ShrinkFromDirections direction, double amountInPx);
-        bool IsPointInAppBar(Point point);
     }
 }

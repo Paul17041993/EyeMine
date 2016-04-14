@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Windows;
 using JuliusSweetland.OptiKey.Enums;
 using JuliusSweetland.OptiKey.Extensions;
@@ -9,7 +8,6 @@ using JuliusSweetland.OptiKey.Models;
 using JuliusSweetland.OptiKey.Properties;
 using JuliusSweetland.OptiKey.UI.ViewModels.Keyboards;
 using JuliusSweetland.OptiKey.UI.ViewModels.Keyboards.Base;
-using Size = JuliusSweetland.OptiKey.UI.ViewModels.Keyboards.SizeAndPosition;
 
 namespace JuliusSweetland.OptiKey.UI.ViewModels
 {
@@ -32,8 +30,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                 CurrentPositionKey = tuple.Item2;
 
                 if (keyStateService.KeyDownStates[KeyValues.MouseMagneticCursorKey].Value.IsDownOrLockedDown()
-                    && !keyStateService.KeyDownStates[KeyValues.SleepKey].Value.IsDownOrLockedDown() &&
-                    !mainWindowManipulationService.IsPointInAppBar(CurrentPositionPoint))
+                    && !keyStateService.KeyDownStates[KeyValues.SleepKey].Value.IsDownOrLockedDown())
                 {
                     mouseOutputService.MoveTo(CurrentPositionPoint);                    
                 }
@@ -102,7 +99,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
 
                 var points = tuple.Item1;
                 var singleKeyValue = tuple.Item2 != null || tuple.Item3 != null
-                    ? new KeyValue { FunctionKey = tuple.Item2, String = tuple.Item3 }
+                    ? new KeyValue (tuple.Item2, tuple.Item3 )
                     : (KeyValue?)null;
                 var multiKeySelection = tuple.Item4;
 
@@ -330,6 +327,20 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                         Keyboard = new Diacritics3();
                         break;
 
+                    case FunctionKeys.DutchBelgium:
+                        Log.Info("Changing keyboard language to DutchBelgium.");
+                        Settings.Default.KeyboardAndDictionaryLanguage = Languages.DutchBelgium;
+                        Log.Info("Changing keyboard to Menu.");
+                        Keyboard = new Menu(() => Keyboard = currentKeyboard);
+                        break;
+
+                    case FunctionKeys.DutchNetherlands:
+                        Log.Info("Changing keyboard language to DutchNetherlands.");
+                        Settings.Default.KeyboardAndDictionaryLanguage = Languages.DutchNetherlands;
+                        Log.Info("Changing keyboard to Menu.");
+                        Keyboard = new Menu(() => Keyboard = currentKeyboard);
+                        break;
+
                     case FunctionKeys.EnglishCanada:
                         Log.Info("Changing keyboard language to EnglishCanada.");
                         Settings.Default.KeyboardAndDictionaryLanguage = Languages.EnglishCanada;
@@ -419,7 +430,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                         mainWindowManipulationService.IncrementOrDecrementOpacity(true);
                         break;
 
-                    case FunctionKeys.Language:
+                    case FunctionKeys.LanguageKeyboard:
                         Log.Info("Restoring window size.");
                         mainWindowManipulationService.Restore();
                         Log.Info("Changing keyboard to Language.");
@@ -698,20 +709,10 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                         if (keyStateService.SimulateKeyStrokes
                             && Settings.Default.SuppressModifierKeysWhenInMouseKeyboard)
                         {
-                            var lastLeftShiftValue = keyStateService.KeyDownStates[KeyValues.LeftShiftKey].Value;
-                            var lastLeftCtrlValue = keyStateService.KeyDownStates[KeyValues.LeftCtrlKey].Value;
-                            var lastLeftWinValue = keyStateService.KeyDownStates[KeyValues.LeftWinKey].Value;
-                            var lastLeftAltValue = keyStateService.KeyDownStates[KeyValues.LeftAltKey].Value;
-                            keyStateService.KeyDownStates[KeyValues.LeftShiftKey].Value = KeyDownStates.Up;
-                            keyStateService.KeyDownStates[KeyValues.LeftCtrlKey].Value = KeyDownStates.Up;
-                            keyStateService.KeyDownStates[KeyValues.LeftWinKey].Value = KeyDownStates.Up;
-                            keyStateService.KeyDownStates[KeyValues.LeftAltKey].Value = KeyDownStates.Up;
+                            var restoreModifierStates = keyStateService.ReleaseModifiers(Log);
                             backAction = () =>
                             {
-                                keyStateService.KeyDownStates[KeyValues.LeftShiftKey].Value = lastLeftShiftValue;
-                                keyStateService.KeyDownStates[KeyValues.LeftCtrlKey].Value = lastLeftCtrlValue;
-                                keyStateService.KeyDownStates[KeyValues.LeftWinKey].Value = lastLeftWinValue;
-                                keyStateService.KeyDownStates[KeyValues.LeftAltKey].Value = lastLeftAltValue;
+                                restoreModifierStates();
                                 Keyboard = currentKeyboard;
                             };
                         }
@@ -1616,7 +1617,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
             }
         }
 
-        public void HandleServiceError(object sender, Exception exception)
+        private void HandleServiceError(object sender, Exception exception)
         {
             Log.Error("Error event received from service. Raising ErrorNotificationRequest and playing ErrorSoundFile (from settings)", exception);
 

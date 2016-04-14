@@ -3,7 +3,6 @@ using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using System.Windows.Input;
 using WindowsInput.Native;
 using JuliusSweetland.OptiKey.Enums;
 using JuliusSweetland.OptiKey.Extensions;
@@ -19,7 +18,7 @@ namespace JuliusSweetland.OptiKey.Services
     {
         #region Private Member Vars
 
-        private readonly static ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private const int MINECRAFT_SLEEP_MS = 60;
 
@@ -36,7 +35,7 @@ namespace JuliusSweetland.OptiKey.Services
         private bool suppressNextAutoSpace = true;
         private bool keyboardIsShiftAware;
         private bool shiftStateSetAutomatically;
-        
+
         #endregion
 
         #region Ctor
@@ -150,9 +149,9 @@ namespace JuliusSweetland.OptiKey.Services
                             //Removing more than one character - only decrement removed string
                             dictionaryService.DecrementEntryUsageCount(Text.Substring(Text.Length - backOneCount, backOneCount).Trim());
                         }
-                        else if(!string.IsNullOrEmpty(lastTextChange)
+                        else if (!string.IsNullOrEmpty(lastTextChange)
                             && lastTextChange.Length == 1
-                            && !Char.IsWhiteSpace(lastTextChange[0]))
+                            && !char.IsWhiteSpace(lastTextChange[0]))
                         {
                             dictionaryService.DecrementEntryUsageCount(Text.InProgressWord(Text.Length)); //We are removing a non-whitespace character - decrement the in progress word
                             dictionaryService.IncrementEntryUsageCount(textAfterBackOne.InProgressWord(Text.Length)); //And increment the in progress word that is left after the removal
@@ -227,7 +226,7 @@ namespace JuliusSweetland.OptiKey.Services
 
                         //If the key cannot be pressed or locked down (these are handled in 
                         //ReactToPublishableKeyDownStateChanges) then publish it and release unlocked keys
-                        var keyValue = new KeyValue { FunctionKey = functionKey };
+                        var keyValue = new KeyValue(functionKey);
                         if (!KeyValues.KeysWhichCanBePressedDown.Contains(keyValue)
                             && !KeyValues.KeysWhichCanBeLockedDown.Contains(keyValue))
                         {
@@ -254,7 +253,7 @@ namespace JuliusSweetland.OptiKey.Services
 
         public void ProcessMultiKeyTextAndSuggestions(List<string> captureAndSuggestions)
         {
-            Log.DebugFormat("Processing {0} captured multi-key selection results", 
+            Log.DebugFormat("Processing {0} captured multi-key selection results",
                 captureAndSuggestions != null ? captureAndSuggestions.Count : 0);
 
             if (captureAndSuggestions == null || !captureAndSuggestions.Any()) return;
@@ -326,18 +325,18 @@ namespace JuliusSweetland.OptiKey.Services
                 dictionaryService.IncrementEntryUsageCount(captureText);
             }
             else if (captureText.Length == 1
-                && !Char.IsWhiteSpace(captureText[0]))
+                && !char.IsWhiteSpace(captureText[0]))
             {
                 if (!string.IsNullOrEmpty(textBeforeCaptureText))
                 {
                     var previousInProgressWord = textBeforeCaptureText.InProgressWord(textBeforeCaptureText.Length);
-                    dictionaryService.DecrementEntryUsageCount(previousInProgressWord);    
+                    dictionaryService.DecrementEntryUsageCount(previousInProgressWord);
                 }
 
                 if (!string.IsNullOrEmpty(Text))
                 {
                     var currentInProgressWord = Text.InProgressWord(Text.Length);
-                    dictionaryService.IncrementEntryUsageCount(currentInProgressWord);    
+                    dictionaryService.IncrementEntryUsageCount(currentInProgressWord);
                 }
             }
 
@@ -538,7 +537,7 @@ namespace JuliusSweetland.OptiKey.Services
                     var inProgressWord = Text == null ? null : Text.InProgressWord(Text.Length);
 
                     if (!string.IsNullOrEmpty(inProgressWord)
-                        && Char.IsLetter(inProgressWord.First())) //A word must start with a letter
+                        && char.IsLetter(inProgressWord.First())) //A word must start with a letter
                     {
                         Log.DebugFormat("Generating auto complete suggestions from '{0}'.", inProgressWord);
 
@@ -547,7 +546,7 @@ namespace JuliusSweetland.OptiKey.Services
                             .Take(Settings.Default.MaxDictionaryMatchesOrSuggestions)
                             .ToList();
 
-                        Log.DebugFormat("{0} suggestions generated (possibly capped to {1} by MaxDictionaryMatchesOrSuggestions setting)", 
+                        Log.DebugFormat("{0} suggestions generated (possibly capped to {1} by MaxDictionaryMatchesOrSuggestions setting)",
                             suggestions.Count(), Settings.Default.MaxDictionaryMatchesOrSuggestions);
 
                         //Correctly case auto complete suggestions
@@ -560,7 +559,7 @@ namespace JuliusSweetland.OptiKey.Services
                             {
                                 bool makeUppercase = false;
                                 if (index < inProgressWord.Length
-                                    && Char.IsUpper(inProgressWord[index]))
+                                    && char.IsUpper(inProgressWord[index]))
                                 {
                                     makeUppercase = true; //In progress word is uppercase as this index
                                 }
@@ -577,7 +576,7 @@ namespace JuliusSweetland.OptiKey.Services
 
                                 if (makeUppercase)
                                 {
-                                    suggestionChars[index] = Char.ToUpper(suggestion[index]);
+                                    suggestionChars[index] = char.ToUpper(suggestion[index]);
                                 }
                             }
 
@@ -589,7 +588,7 @@ namespace JuliusSweetland.OptiKey.Services
                         return;
                     }
                 }
-                
+
                 ClearSuggestions();
             }
         }
@@ -604,7 +603,7 @@ namespace JuliusSweetland.OptiKey.Services
         {
             Log.DebugFormat("Modifying {0} suggestions.", suggestions != null ? suggestions.Count : 0);
 
-            if(suggestions == null || !suggestions.Any()) return null;
+            if (suggestions == null || !suggestions.Any()) return null;
 
             var modifiedSuggestions = suggestions
                 .Select(ModifyText)
@@ -625,7 +624,7 @@ namespace JuliusSweetland.OptiKey.Services
                 ? suggestions
                 : null;
         }
-        
+
         private void PublishKeyPress(FunctionKeys functionKey)
         {
             if (keyStateService.SimulateKeyStrokes)
@@ -643,6 +642,15 @@ namespace JuliusSweetland.OptiKey.Services
         {
             if (keyStateService.SimulateKeyStrokes)
             {
+                var virtualKeyCode = character.ToVirtualKeyCode();
+                if (virtualKeyCode != null)
+                {
+                    Log.InfoFormat("Publishing '{0}' => as virtual key code {1} (using hard coded mapping)",
+                        character.ConvertEscapedCharToLiteral(), virtualKeyCode);
+                    publishService.KeyDownUp(virtualKeyCode.Value);
+                    return;
+                }
+
                 if (!Settings.Default.PublishVirtualKeyCodesForCharacters)
                 {
                     Log.InfoFormat("Publishing '{0}' as text", character.ConvertEscapedCharToLiteral());
@@ -650,7 +658,7 @@ namespace JuliusSweetland.OptiKey.Services
                     return;
                 }
 
-                //Get keyboard layout of currently focussed window
+                //Get keyboard layout of currently focused window
                 IntPtr hWnd = PInvoke.GetForegroundWindow();
                 int lpdwProcessId;
                 int winThreadProcId = PInvoke.GetWindowThreadProcessId(hWnd, out lpdwProcessId);
@@ -664,6 +672,7 @@ namespace JuliusSweetland.OptiKey.Services
                     if (keyboardLayout == installedInputLanguages[i].Handle)
                     {
                         keyboardCulture = installedInputLanguages[i].Culture.DisplayName;
+                        break;
                     }
                 }
 
@@ -674,11 +683,10 @@ namespace JuliusSweetland.OptiKey.Services
                 var ctrl = (vkKeyScan & 0x200) > 0;
                 var alt = (vkKeyScan & 0x400) > 0;
 
-                if (Settings.Default.PublishVirtualKeyCodesForCharacters
-                    && vkKeyScan != -1)
+                if (vkKeyScan != -1)
                 {
-                    Log.InfoFormat("Publishing '{0}' => as virtual key code {1}(0x{1:X}){2}{3}{4} (keyboard:{5})",
-                        character.ConvertEscapedCharToLiteral(), vkCode, shift ? "+SHIFT" : null, 
+                    Log.InfoFormat("Publishing '{0}' => as virtual key code {1}(0x{1:X}){2}{3}{4} (using VkKeyScanEx with keyboard layout:{5})",
+                        character.ConvertEscapedCharToLiteral(), vkCode, shift ? "+SHIFT" : null,
                         ctrl ? "+CTRL" : null, alt ? "+ALT" : null, keyboardCulture);
 
                     bool releaseShift = false;
@@ -720,7 +728,7 @@ namespace JuliusSweetland.OptiKey.Services
                 }
                 else
                 {
-                    Log.InfoFormat("No virtual key code found for '{0}' so publishing as text (keyboard:{1})", 
+                    Log.InfoFormat("No virtual key code found for '{0}' so publishing as text (keyboard:{1})",
                         character.ConvertEscapedCharToLiteral(), keyboardCulture);
                     publishService.TypeText(character.ToString());
                 }

@@ -27,7 +27,7 @@ namespace JuliusSweetland.OptiKey.Services
 
         #region Private Member Vars
 
-        private readonly static ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly Window window;
         private readonly IntPtr windowHandle;
@@ -266,6 +266,23 @@ namespace JuliusSweetland.OptiKey.Services
             return window.Opacity;
         }
 
+        public void Hide()
+        {
+            Log.Info("Hide called");
+
+            var windowState = getWindowState();
+            if (windowState != WindowStates.Hidden)
+            {
+                savePreviousWindowState(windowState);
+            }
+            if (getWindowState() == WindowStates.Docked)
+            {
+                UnRegisterAppBar();
+            }
+            saveWindowState(WindowStates.Hidden);
+            ApplySavedState();
+        }
+
         public void IncrementOrDecrementOpacity(bool increment)
         {
             Log.InfoFormat("IncrementOrDecrementOpacity called with increment {0}", increment);
@@ -379,7 +396,7 @@ namespace JuliusSweetland.OptiKey.Services
             Log.Info("Restore called");
 
             var windowState = getWindowState();
-            if (windowState != WindowStates.Maximised && windowState != WindowStates.Minimised) return;
+            if (windowState != WindowStates.Maximised && windowState != WindowStates.Minimised && windowState != WindowStates.Hidden) return;
             saveWindowState(getPreviousWindowState()); 
             ApplySavedState();
             savePreviousWindowState(windowState);
@@ -608,6 +625,10 @@ namespace JuliusSweetland.OptiKey.Services
                     window.Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle,
                         new ApplySizeAndPositionDelegate(ApplyAndPersistSizeAndPosition), minimisedSizeAndPosition);
                     break;
+
+                case WindowStates.Hidden:
+                    window.WindowState = System.Windows.WindowState.Minimized;
+                    break;
             }
         }
 
@@ -727,7 +748,9 @@ namespace JuliusSweetland.OptiKey.Services
             Log.Info("CoerceSavedStateAndApply called.");
 
             var windowState = getWindowState();
-            if (windowState != WindowStates.Minimised && windowState != WindowStates.Maximised)
+            if (windowState != WindowStates.Maximised
+                && windowState != WindowStates.Minimised
+                && windowState != WindowStates.Hidden)
             {
                 //Coerce state
                 var fullDockThicknessAsPercentageOfScreen = getFullDockThicknessAsPercentageOfScreen();
@@ -1103,6 +1126,7 @@ namespace JuliusSweetland.OptiKey.Services
 
                 case WindowStates.Maximised:
                 case WindowStates.Minimised:
+                case WindowStates.Hidden:
                     //Do not save anything
                     break;
             }
@@ -1139,15 +1163,6 @@ namespace JuliusSweetland.OptiKey.Services
             //Add hook to receive position change messages from Windows
             HwndSource source = HwndSource.FromHwnd(abd.hWnd);
             source.AddHook(AppBarPositionChangeCallback);
-        }
-
-        public bool IsPointInAppBar(Point point)
-        {   
-            if (point.X < appBarBoundsInPx.Left || point.X > appBarBoundsInPx.Right ||
-                point.Y < appBarBoundsInPx.Top || point.Y > appBarBoundsInPx.Bottom)   
-                return false;
-            else
-                return true;
         }
 
         private void SetAppBarSizeAndPosition(DockEdges dockPosition, Rect sizeAndPosition, bool isInitialising = false)
