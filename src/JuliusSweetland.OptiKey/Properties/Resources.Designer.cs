@@ -2098,7 +2098,8 @@ namespace JuliusSweetland.OptiKey.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fly up.
+        ///   Looks up a localized string similar to Fly
+        ///higher.
         /// </summary>
         public static string MC_FLY_UP {
             get {

@@ -1644,7 +1644,8 @@ crafting table</value>
     <value>Dismount</value>
   </data>
   <data name="MC_FLY_UP" xml:space="preserve">
-    <value>Fly up</value>
+    <value>Fly
+higher</value>
   </data>
   <data name="MC_GATHER" xml:space="preserve">
     <value>Gather 
