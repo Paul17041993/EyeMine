@@ -95,22 +95,22 @@
                                                 <controls:Key Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="20" >
                                                 </controls:Key>
 
-                                                <controls:Key Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
-                                                              Text="{x:Static resx:Resources.MC_USE_ITEM}"
-                                                              SymbolGeometry="{StaticResource MouseRightClickIcon}"                                                          
-                                                              SharedSizeGroup="KeyWithSymbolAndText">
-                                                    <controls:Key.Value>
-                                                        <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MouseRightClick}" />
-                                                    </controls:Key.Value>
-                                                </controls:Key>
-
                                                 
-                                                <controls:Key Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
+                                                <controls:Key Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
                                                               Text="{x:Static resx:Resources.MC_PREV_ITEM}"
                                                               SymbolGeometry="{StaticResource MinecraftPrev}"                                                              
                                                               SharedSizeGroup="KeyWithSymbolAndText">
                                                     <controls:Key.Value>
                                                         <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MouseScrollToTop}" />
+                                                    </controls:Key.Value>
+                                                </controls:Key>
+
+                                                <controls:Key Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
+                                                              Text="{x:Static resx:Resources.MC_USE_ITEM}"
+                                                              SymbolGeometry="{StaticResource MouseRightClickIcon}"                                                          
+                                                              SharedSizeGroup="KeyWithSymbolAndText">
+                                                    <controls:Key.Value>
+                                                        <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MouseRightClick}" />
                                                     </controls:Key.Value>
                                                 </controls:Key>
 
@@ -124,23 +124,21 @@
                                                 </controls:Key>
 
                                                 
-                                                
-
                                                 <controls:Key Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2"
-                                                              Text="{x:Static resx:Resources.MC_USE_ITEM_TOGGLE}"                                                                                                  
-                                                              SymbolGeometry="{StaticResource MouseRightDownUpIcon}"                                                              
-                                                              SharedSizeGroup="KeyWithSymbolAndText">
-                                                    <controls:Key.Value>
-                                                        <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MouseRightDownUp}" />
-                                                    </controls:Key.Value>
-                                                </controls:Key>
-
-                                                <controls:Key Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2"
                                                               Text="{x:Static resx:Resources.MC_NEXT_ITEM}"
                                                               SymbolGeometry="{StaticResource MinecraftNext}"                                                              
                                                               SharedSizeGroup="KeyWithSymbolAndText">
                                                     <controls:Key.Value>
                                                         <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MouseScrollToBottom}" />
+                                                    </controls:Key.Value>
+                                                </controls:Key>
+
+                                                <controls:Key Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2"
+                                                              Text="{x:Static resx:Resources.MC_USE_ITEM_TOGGLE}"                                                                                                  
+                                                              SymbolGeometry="{StaticResource MouseRightDownUpIcon}"                                                              
+                                                              SharedSizeGroup="KeyWithSymbolAndText">
+                                                    <controls:Key.Value>
+                                                        <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MouseRightDownUp}" />
                                                     </controls:Key.Value>
                                                 </controls:Key>
 
