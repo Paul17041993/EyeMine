@@ -232,7 +232,7 @@
                                                               SymbolGeometry="{StaticResource MinecraftAutoJump}"
                                                               Text="{x:Static resx:Resources.MC_AUTO_JUMP}">
                                                     <controls:Key.Value>
-                                                        <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MinecraftAutoJump}" />
+                                                        <models:KeyValue String="j" />
                                                     </controls:Key.Value>
                                                 </controls:Key>
 
@@ -240,7 +240,7 @@
                                                               SymbolGeometry="{StaticResource MinecraftSneak}"
                                                               Text="{x:Static resx:Resources.MC_SNEAK}">
                                                     <controls:Key.Value>
-                                                        <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MinecraftSneak}" />
+                                                        <models:KeyValue String="z" />
                                                     </controls:Key.Value>
                                                 </controls:Key>
                                                 
@@ -333,7 +333,7 @@
                                                               SymbolGeometry="{StaticResource MinecraftMineContinuous}"
                                                               Text="{x:Static resx:Resources.MC_MINE}">
                                                     <controls:Key.Value>
-                                                        <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MinecraftMineContinuous}" />
+                                                        <models:KeyValue String="m" />
                                                     </controls:Key.Value>                                                    
                                                 </controls:Key>
 

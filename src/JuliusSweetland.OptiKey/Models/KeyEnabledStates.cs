@@ -304,13 +304,6 @@ namespace JuliusSweetland.OptiKey.Models
                     return false;
                 }
 
-                if (keyValue == KeyValues.MinecraftFlyUpKey &&
-                     !keyStateService.KeyDownStates[KeyValues.MinecraftFlyAutoKey].Value.IsDownOrLockedDown() &&
-                     !keyStateService.KeyDownStates[KeyValues.MinecraftFlyManualKey].Value.IsDownOrLockedDown())
-                {
-                    return false;
-                }
-
                 return true;
             }
         }

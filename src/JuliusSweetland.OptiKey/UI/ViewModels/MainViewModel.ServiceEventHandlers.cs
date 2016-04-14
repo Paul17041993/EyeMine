@@ -150,21 +150,6 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
             }
         }
 
-        // Minecraft states are turned on with a single key binding, and
-        // off with LCTRL + key binding. This helps us to keep state in
-        // sync with minecraft.
-        private void ToggleMinecraftKey(KeyValue key, string command)
-        {
-            if (keyStateService.KeyDownStates[key].Value.IsDownOrLockedDown())
-            {
-                keyboardOutputService.ProcessSingleKeyText(command);
-            }
-            else
-            {
-                keyboardOutputService.ProcessSingleKeyWithModifier(command, FunctionKeys.LeftCtrl);
-            }
-        }
-
         // orientation = 0 for due north, and +1 for every 45 degrees clockwise
         private void HandleMinecraftManualLook(int orientation)
         {
@@ -186,7 +171,6 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
             {
                 for (int i = 0; i < orientation; ++i)
                 {
-                    keyboardOutputService.ProcessFunctionKey(FunctionKeys.LeftShift);
                     keyboardOutputService.ProcessSingleKeyText("o");
                 }
                 keyboardOutputService.ProcessSingleKeyText("p");
@@ -1191,63 +1175,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                         simulateMoveToTop();
                         break;
 
-                    case FunctionKeys.MinecraftMineContinuous:
-                        Log.Info("Minecraft mine continuous selected.");
-                        ToggleMinecraftKey(KeyValues.MinecraftMineContinuousKey, "m");
-                        break;
-                       
-                    case FunctionKeys.MinecraftDismount:
-                        keyboardOutputService.ProcessSingleKeyWithModifier("", FunctionKeys.LeftShift);
-                        break;
-
-                    case FunctionKeys.MinecraftFlyManual:
-                        Log.Info("Minecraft mine continuous selected.");
-                        ToggleMinecraftKey(KeyValues.MinecraftFlyManualKey, "f");
-                        // Only one allowed to be down at a time.
-                        keyStateService.KeyDownStates[KeyValues.MinecraftFlyAutoKey].Value = KeyDownStates.Up;
-                    break;
-
-                    case FunctionKeys.MinecraftFlyAuto:
-                        Log.Info("Minecraft mine continuous selected.");
-                        ToggleMinecraftKey(KeyValues.MinecraftFlyAutoKey, "g");
-                        // Only one allowed to be down at a time.
-                        keyStateService.KeyDownStates[KeyValues.MinecraftFlyManualKey].Value = KeyDownStates.Up;
-                        break;
-
-                    case FunctionKeys.MinecraftFlyUp:
-                        Log.Info("Minecraft fly up selected.");
-                        if (keyStateService.KeyDownStates[KeyValues.MinecraftFlyManualKey].Value.IsDownOrLockedDown()) {
-                            keyboardOutputService.ProcessSingleKeyText("f");
-                        }
-                        else if (keyStateService.KeyDownStates[KeyValues.MinecraftFlyAutoKey].Value.IsDownOrLockedDown()) {
-                            keyboardOutputService.ProcessSingleKeyText("g");
-                        }
-                        break;
-
-                    case FunctionKeys.MinecraftAutoJump:
-                        Log.Info("Minecraft mine continuous selected.");
-                        ToggleMinecraftKey(KeyValues.MinecraftAutoJumpKey, "j");
-                        break;
-
-                    case FunctionKeys.MinecraftWalk:
-                        Log.Info("Minecraft mine continuous selected.");
-                        ToggleMinecraftKey(KeyValues.MinecraftWalkKey, "h");
-                        break;
-
-                    case FunctionKeys.MinecraftSneak:
-                        Log.Info("Minecraft mine continuous selected.");
-                        ToggleMinecraftKey(KeyValues.MinecraftSneakKey, "z");
-                        break;
-
-                    case FunctionKeys.MinecraftSwim:
-                        Log.Info("Minecraft mine continuous selected.");
-                        ToggleMinecraftKey(KeyValues.MinecraftSwimKey, "v");
-                        break;
-
-                    case FunctionKeys.MinecraftAttackContinuous:
-                        Log.Info("Minecraft mine continuous selected.");
-                        ToggleMinecraftKey(KeyValues.MinecraftAttackContinuousKey, "r");
-                        break;
+         
 
                     case FunctionKeys.MinecraftLookNorth:
                         Log.Info("Minecraft move/look to north selected.");

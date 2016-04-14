@@ -158,7 +158,7 @@
                                                               SymbolGeometry="{StaticResource MinecraftFly}"
                                                               Text= "Fly">
                                                     <controls:Key.Value>
-                                                        <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MinecraftFlyManual}" />
+                                                        <models:KeyValue String="f" />
                                                     </controls:Key.Value>
                                                 </controls:Key>
 
@@ -166,17 +166,18 @@
                                                               Text="{x:Static resx:Resources.MC_FLY_UP}"
                                                               SymbolGeometry="{StaticResource MinecraftFlyUp}">
                                                     <controls:Key.Value>
-                                                        <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MinecraftFlyUp}" />
+                                                        <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.ArrowUp}" />
                                                     </controls:Key.Value>
                                                 </controls:Key>
-                                                
+
                                                 <controls:Key Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="2"
                                                               Text="Auto fly" 
                                                               SymbolGeometry="{StaticResource MinecraftAutoFly}">
                                                     <controls:Key.Value>
-                                                        <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MinecraftFlyAuto}" />
+                                                        <models:KeyValue String="g" />
                                                     </controls:Key.Value>
                                                 </controls:Key>
+
 
                                                 <controls:Key Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="6" Grid.RowSpan="2"
                                                               SymbolGeometry="{StaticResource MinecraftLookWithCursor}"
@@ -190,7 +191,7 @@
                                                               SymbolGeometry="{StaticResource MinecraftWalk}"
                                                               Text="{x:Static resx:Resources.MC_WALK}">
                                                     <controls:Key.Value>
-                                                        <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MinecraftWalk}" />
+                                                        <models:KeyValue String="h" />
                                                     </controls:Key.Value>
                                                 </controls:Key>
 
@@ -207,7 +208,7 @@
                                                               SymbolGeometry="{StaticResource MinecraftAutoJump}"
                                                               Text="{x:Static resx:Resources.MC_AUTO_JUMP}">
                                                     <controls:Key.Value>
-                                                        <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MinecraftAutoJump}" />
+                                                        <models:KeyValue String="j" />
                                                     </controls:Key.Value>
                                                 </controls:Key>
 
@@ -215,7 +216,7 @@
                                                               SymbolGeometry="{StaticResource MinecraftSneak}"
                                                               Text="{x:Static resx:Resources.MC_SNEAK}">
                                                     <controls:Key.Value>
-                                                        <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MinecraftSneak}" />
+                                                        <models:KeyValue String="z" />
                                                     </controls:Key.Value>
                                                 </controls:Key>
 
@@ -223,7 +224,7 @@
                                                               SymbolGeometry="{StaticResource MinecraftSwim}"
                                                               Text="{x:Static resx:Resources.MC_SWIM}">
                                                     <controls:Key.Value>
-                                                        <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MinecraftSwim}" />
+                                                        <models:KeyValue String="v" />
                                                     </controls:Key.Value>
                                                 </controls:Key>
 
@@ -232,7 +233,7 @@
                                                               SymbolGeometry="{StaticResource MinecraftAttackContinuous}"
                                                               Text="{x:Static resx:Resources.MC_ATTACK}">
                                                     <controls:Key.Value>
-                                                        <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MinecraftAttackContinuous}" />
+                                                        <models:KeyValue String="r" />
                                                     </controls:Key.Value>
                                                 </controls:Key>
 
@@ -266,8 +267,8 @@
                                                               SymbolGeometry="{StaticResource MinecraftMineContinuous}"
                                                               Text="{x:Static resx:Resources.MC_MINE}">
                                                     <controls:Key.Value>
-                                                        <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MinecraftMineContinuous}" />
-                                                    </controls:Key.Value>                                                    
+                                                        <models:KeyValue String="m" />
+                                                    </controls:Key.Value>
                                                 </controls:Key>
 
                                                 <controls:Key Grid.Row="5" Grid.Column="16" Grid.ColumnSpan="2" Grid.RowSpan="2">                                                   
