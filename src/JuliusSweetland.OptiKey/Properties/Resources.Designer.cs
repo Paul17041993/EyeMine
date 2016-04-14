@@ -1773,6 +1773,16 @@ namespace JuliusSweetland.OptiKey.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Toggle 
+        ///walk (legacy).
+        /// </summary>
+        public static string MC_WALK_LEGACY {
+            get {
+                return ResourceManager.GetString("MC_WALK_LEGACY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Medium.
         /// </summary>
         public static string MEDIUM {

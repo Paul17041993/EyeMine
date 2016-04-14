@@ -1375,4 +1375,8 @@ use item</value>
     <value>Toggle 
 walking</value>
   </data>
+  <data name="MC_WALK_LEGACY" xml:space="preserve">
+    <value>Toggle 
+walk (legacy)</value>
+  </data>
 </root>

@@ -185,11 +185,19 @@
                                                     </controls:Key.Value>
                                                 </controls:Key>
 
-                                                <controls:Key Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="6" Grid.RowSpan="2"
+                                                <controls:Key Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="3" Grid.RowSpan="2"
                                                               SymbolGeometry="{StaticResource MinecraftWalk}"
                                                               Text="{x:Static resx:Resources.MC_WALK}">
                                                     <controls:Key.Value>
                                                         <models:KeyValue String="h" />
+                                                    </controls:Key.Value>
+                                                </controls:Key>
+                                                
+                                                <controls:Key Grid.Row="3" Grid.Column="9" Grid.ColumnSpan="3" Grid.RowSpan="2"
+                                                              SymbolGeometry="{StaticResource MinecraftMoveLegacy}"
+                                                              Text="{x:Static resx:Resources.MC_WALK_LEGACY}">
+                                                    <controls:Key.Value>
+                                                        <models:KeyValue String="b" />
                                                     </controls:Key.Value>
                                                 </controls:Key>
 
