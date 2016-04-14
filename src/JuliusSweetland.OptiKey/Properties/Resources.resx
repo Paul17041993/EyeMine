@@ -1331,6 +1331,10 @@ item</value>
     <value>Take
 output</value>
   </data>
+  <data name="MC_PICK_BLOCK" xml:space="preserve">
+    <value>Pick
+block</value>
+  </data>
   <data name="MC_PILLAR" xml:space="preserve">
     <value>Place
 pillar</value>

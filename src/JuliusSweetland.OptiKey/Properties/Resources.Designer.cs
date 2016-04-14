@@ -1657,6 +1657,16 @@ namespace JuliusSweetland.OptiKey.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pick
+        ///block.
+        /// </summary>
+        public static string MC_PICK_BLOCK {
+            get {
+                return ResourceManager.GetString("MC_PICK_BLOCK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Place
         ///pillar.
         /// </summary>

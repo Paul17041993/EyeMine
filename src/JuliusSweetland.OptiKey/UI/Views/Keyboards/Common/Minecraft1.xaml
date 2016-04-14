@@ -146,7 +146,7 @@
 
                                                 <!-- TODO: Put text in resource, make icon -->
                                                 <controls:Key Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2"
-                                                              Text="Pick block"
+                                                              Text="{x:Static resx:Resources.MC_PICK_BLOCK}"
                                                               SharedSizeGroup="KeyWithSymbolAndText">
                                                     <controls:Key.Value>
                                                         <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MouseMiddleClick}" />
