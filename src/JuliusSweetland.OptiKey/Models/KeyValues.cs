@@ -73,8 +73,6 @@ namespace JuliusSweetland.OptiKey.Models
         public static readonly KeyValue Suggestion5Key = new KeyValue { FunctionKey = FunctionKeys.Suggestion5 };
         public static readonly KeyValue Suggestion6Key = new KeyValue { FunctionKey = FunctionKeys.Suggestion6 };
         public static readonly KeyValue SleepKey = new KeyValue { FunctionKey = FunctionKeys.Sleep };        
-        public static readonly KeyValue MinecraftMoveModeKey = new KeyValue { FunctionKey = FunctionKeys.MinecraftMoveMode };
-        public static readonly KeyValue MinecraftLookModeKey = new KeyValue { FunctionKey = FunctionKeys.MinecraftLookMode };
         
         private static readonly Dictionary<Languages, List<KeyValue>> multiKeySelectionKeys;
 
@@ -131,9 +129,7 @@ namespace JuliusSweetland.OptiKey.Models
                     MouseMagneticCursorKey,
                     MouseMagnifierKey,
                     MultiKeySelectionKey,
-                    SleepKey,
-                    MinecraftLookModeKey,
-                    MinecraftMoveModeKey,
+                    SleepKey
                 };
             }
         }

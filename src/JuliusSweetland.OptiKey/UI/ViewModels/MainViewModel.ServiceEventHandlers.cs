@@ -452,8 +452,6 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                             keyStateService.KeyDownStates[KeyValues.LeftCtrlKey].Value = lastLeftCtrlValueMC;
                             keyStateService.KeyDownStates[KeyValues.LeftWinKey].Value = lastLeftWinValueMC;
                             keyStateService.KeyDownStates[KeyValues.LeftAltKey].Value = lastLeftAltValueMC;
-                            keyStateService.KeyDownStates[KeyValues.MinecraftLookModeKey].Value = KeyDownStates.Up;
-                            keyStateService.KeyDownStates[KeyValues.MinecraftMoveModeKey].Value = KeyDownStates.Up;
                             keyStateService.KeyDownStates[KeyValues.MouseMagnifierKey].Value = lastMagnifierValueMC;
 
                             Settings.Default.MouseScrollAmountInClicks = lastScrollSetting;    
@@ -465,10 +463,6 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                         };
                         
                         Keyboard = new Minecraft(backActionMC);
-
-                        // Default to MinecraftLookMode
-                        keyStateService.KeyDownStates[KeyValues.MinecraftLookModeKey].Value = KeyDownStates.Up;
-                        keyStateService.KeyDownStates[KeyValues.MinecraftMoveModeKey].Value = KeyDownStates.LockedDown;
 
                         // Set everything else appropriately
                         keyStateService.KeyDownStates[KeyValues.LeftShiftKey].Value = KeyDownStates.Up;
@@ -498,9 +492,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                             keyStateService.KeyDownStates[KeyValues.LeftShiftKey].Value = lastLeftShiftValueMC1;
                             keyStateService.KeyDownStates[KeyValues.LeftCtrlKey].Value = lastLeftCtrlValueMC1;
                             keyStateService.KeyDownStates[KeyValues.LeftWinKey].Value = lastLeftWinValueMC1;
-                            keyStateService.KeyDownStates[KeyValues.LeftAltKey].Value = lastLeftAltValueMC1;
-                            keyStateService.KeyDownStates[KeyValues.MinecraftLookModeKey].Value = KeyDownStates.Up;
-                            keyStateService.KeyDownStates[KeyValues.MinecraftMoveModeKey].Value = KeyDownStates.Up;
+                            keyStateService.KeyDownStates[KeyValues.LeftAltKey].Value = lastLeftAltValueMC1;                            
                             keyStateService.KeyDownStates[KeyValues.MouseMagnifierKey].Value = lastMagnifierValueMC1;
 
                             Settings.Default.MouseScrollAmountInClicks = lastScrollSetting1;
@@ -512,10 +504,6 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                         };
 
                         Keyboard = new Minecraft1(backActionMC1);
-
-                        // Default to MinecraftLookMode
-                        keyStateService.KeyDownStates[KeyValues.MinecraftLookModeKey].Value = KeyDownStates.Up;
-                        keyStateService.KeyDownStates[KeyValues.MinecraftMoveModeKey].Value = KeyDownStates.LockedDown;
 
                         // Set everything else appropriately
                         keyStateService.KeyDownStates[KeyValues.LeftShiftKey].Value = KeyDownStates.Up;
@@ -546,8 +534,6 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                             keyStateService.KeyDownStates[KeyValues.LeftCtrlKey].Value = lastLeftCtrlValueMC2;
                             keyStateService.KeyDownStates[KeyValues.LeftWinKey].Value = lastLeftWinValueMC2;
                             keyStateService.KeyDownStates[KeyValues.LeftAltKey].Value = lastLeftAltValueMC2;
-                            keyStateService.KeyDownStates[KeyValues.MinecraftLookModeKey].Value = KeyDownStates.Up;
-                            keyStateService.KeyDownStates[KeyValues.MinecraftMoveModeKey].Value = KeyDownStates.Up;
                             keyStateService.KeyDownStates[KeyValues.MouseMagnifierKey].Value = lastMagnifierValueMC2;
 
                             Settings.Default.MouseScrollAmountInClicks = lastScrollSetting2;
@@ -560,10 +546,6 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
 
                         Keyboard = new Minecraft2(backActionMC2);
 
-                        // Default to MinecraftLookMode
-                        keyStateService.KeyDownStates[KeyValues.MinecraftLookModeKey].Value = KeyDownStates.Up;
-                        keyStateService.KeyDownStates[KeyValues.MinecraftMoveModeKey].Value = KeyDownStates.LockedDown;
-
                         // Set everything else appropriately
                         keyStateService.KeyDownStates[KeyValues.LeftShiftKey].Value = KeyDownStates.Up;
                         keyStateService.KeyDownStates[KeyValues.LeftWinKey].Value = KeyDownStates.Up;
@@ -575,9 +557,8 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
 
                     case FunctionKeys.MinecraftInventoryKeyboard:
                         Log.Info("Changing keyboard to MinecraftInventoryKeyboard.");
-
-                        // Default to MinecraftLookMode, unless already in MinecraftMoveMode
-                        // Also turn off any modifier keys.
+                        
+                        // Turn off any modifier keys.
                         Action backActionMCInventory;
 
                         var lastMagnifierValue = keyStateService.KeyDownStates[KeyValues.MouseMagnifierKey].Value;
@@ -615,29 +596,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                         Settings.Default.MouseScrollAmountInClicks = 1;
 
                         break;
-
-                    // Look mode and Move mode are mutually exclusive.
-                    case FunctionKeys.MinecraftLookMode:
-                        if (keyStateService.KeyDownStates[KeyValues.MinecraftMoveModeKey].Value.IsDownOrLockedDown())
-                        {
-                            keyStateService.KeyDownStates[KeyValues.MinecraftMoveModeKey].Value = KeyDownStates.Up;
-                        }
-                        else if (!keyStateService.KeyDownStates[KeyValues.MinecraftLookModeKey].Value.IsDownOrLockedDown())
-                        {
-                            keyStateService.KeyDownStates[KeyValues.MinecraftMoveModeKey].Value = KeyDownStates.LockedDown;
-                        }
-                        break;
-
-                    case FunctionKeys.MinecraftMoveMode:
-                        if (keyStateService.KeyDownStates[KeyValues.MinecraftLookModeKey].Value.IsDownOrLockedDown())
-                        {
-                            keyStateService.KeyDownStates[KeyValues.MinecraftLookModeKey].Value = KeyDownStates.Up;
-                        }
-                        else if (!keyStateService.KeyDownStates[KeyValues.MinecraftMoveModeKey].Value.IsDownOrLockedDown())
-                        {
-                            keyStateService.KeyDownStates[KeyValues.MinecraftLookModeKey].Value = KeyDownStates.LockedDown;
-                        }
-                        break;
+                    
                     case FunctionKeys.Minimise:
                         Log.Info("Minimising window.");
                         mainWindowManipulationService.Minimise();
@@ -1173,9 +1132,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                         };
                         lastMouseActionStateManager.LastMouseAction = simulateMoveToTop;
                         simulateMoveToTop();
-                        break;
-
-         
+                        break;         
 
                     case FunctionKeys.MinecraftLookNorth:
                         Log.Info("Minecraft move/look to north selected.");
