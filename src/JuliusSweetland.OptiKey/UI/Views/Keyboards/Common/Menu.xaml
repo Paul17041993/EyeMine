@@ -50,11 +50,8 @@
         <controls:Key Grid.Row="0" Grid.Column="2"
                       SymbolGeometry="{StaticResource MinecraftIcon}"
                       Text="{x:Static resx:Resources.MINECRAFT_LAYOUT}"
-                      SharedSizeGroup="KeyWithSymbolAndText">
-            <controls:Key.Value>
-                <models:KeyValue FunctionKey="{x:Static enums:FunctionKeys.MinecraftKeyboard1}" />
-            </controls:Key.Value>
-        </controls:Key>
+                      SharedSizeGroup="KeyWithSymbolAndText"
+                      Value="{x:Static models:KeyValues.MinecraftKeyboard1Key}" />
         <controls:Key Grid.Row="0" Grid.Column="3"
                       SymbolGeometry="{StaticResource CurrenciesIcon}"
                       Text="{x:Static resx:Resources.CURRENCIES}"
