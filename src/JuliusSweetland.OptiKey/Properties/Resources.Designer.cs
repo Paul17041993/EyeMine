@@ -1519,6 +1519,15 @@ namespace JuliusSweetland.OptiKey.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dismount.
+        /// </summary>
+        public static string MC_DISMOUNT {
+            get {
+                return ResourceManager.GetString("MC_DISMOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fly up.
         /// </summary>
         public static string MC_FLY_UP {
