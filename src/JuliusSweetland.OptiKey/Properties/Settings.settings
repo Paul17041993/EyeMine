@@ -138,7 +138,7 @@
       <Value Profile="(Default)">NextHigh</Value>
     </Setting>
     <Setting Name="CheckForUpdates" Roaming="true" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ShowSplashScreen" Roaming="true" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
