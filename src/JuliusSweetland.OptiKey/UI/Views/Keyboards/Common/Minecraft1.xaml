@@ -209,9 +209,11 @@
                                                               SymbolGeometry="{StaticResource MinecraftMineContinuous}"
                                                               Text="{x:Static resx:Resources.MC_MINE}"
                                                               Value="m" />
-                                                    
-                                                <controls:Key Grid.Row="5" Grid.Column="16" Grid.ColumnSpan="2" Grid.RowSpan="2">                                                   
-                                                </controls:Key>
+
+                                                <controls:Key Grid.Row="5" Grid.Column="16" Grid.ColumnSpan="2" Grid.RowSpan="2"
+                                                              SymbolGeometry="{StaticResource MinecraftGather}"
+                                                              Text="{x:Static resx:Resources.MC_GATHER}"
+                                                              Value="x" />
 
 
                                                 <controls:Key Grid.Row="1" Grid.Column="18" Grid.ColumnSpan="2" Grid.RowSpan="2"
