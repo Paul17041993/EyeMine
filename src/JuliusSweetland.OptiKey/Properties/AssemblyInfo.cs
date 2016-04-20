@@ -9,7 +9,7 @@ using System.Windows;
 [assembly: AssemblyTitle("OptiKey")]
 [assembly: AssemblyDescription("Free, Open Source, Assistive On-Screen Keyboard")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("JuliusSweetland")]
+[assembly: AssemblyCompany("JuliusSweetland/SpecialEffect")]
 [assembly: AssemblyProduct("OptiKey")]
 [assembly: AssemblyCopyright("Licensed under the terms of the GNU GPL v3")]
 [assembly: AssemblyTrademark("")]
