@@ -234,7 +234,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="MainWindowFullDockThicknessAsPercentageOfScreen" Roaming="true" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">50</Value>
+      <Value Profile="(Default)">40</Value>
     </Setting>
     <Setting Name="MainWindowDockPosition" Roaming="true" Type="JuliusSweetland.OptiKey.Enums.DockEdges" Scope="User">
       <Value Profile="(Default)">Bottom</Value>
