@@ -237,7 +237,7 @@
       <Value Profile="(Default)">50</Value>
     </Setting>
     <Setting Name="MainWindowDockPosition" Roaming="true" Type="JuliusSweetland.OptiKey.Enums.DockEdges" Scope="User">
-      <Value Profile="(Default)">Top</Value>
+      <Value Profile="(Default)">Bottom</Value>
     </Setting>
     <Setting Name="MainWindowDockSize" Roaming="true" Type="JuliusSweetland.OptiKey.Enums.DockSizes" Scope="User">
       <Value Profile="(Default)">Full</Value>
