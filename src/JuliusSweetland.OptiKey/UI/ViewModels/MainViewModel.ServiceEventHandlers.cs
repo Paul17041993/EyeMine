@@ -122,7 +122,45 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
         private void ProcessKeyValueLink(KeyValueLink keyValue)
         {
             // Placeholder for now
-            Log.InfoFormat("link key found! {0}", keyValue.ToString());            
+            Log.InfoFormat("link key found! {0}", keyValue.ToString());    
+        
+            // Turn off any modifier keys.
+            Action backAction;
+            var currentKeyboard = Keyboard;
+
+            var lastMagnifierValue = keyStateService.KeyDownStates[KeyValues.MouseMagnifierKey].Value;
+            var lastLeftShiftValue = keyStateService.KeyDownStates[KeyValues.LeftShiftKey].Value;
+            var lastLeftCtrlValue = keyStateService.KeyDownStates[KeyValues.LeftCtrlKey].Value;
+            var lastLeftWinValue = keyStateService.KeyDownStates[KeyValues.LeftWinKey].Value;
+            var lastLeftAltValue = keyStateService.KeyDownStates[KeyValues.LeftAltKey].Value;
+            var lastScrollSetting = Settings.Default.MouseScrollAmountInClicks;
+                        
+            backAction = () =>
+            {
+                keyStateService.KeyDownStates[KeyValues.LeftShiftKey].Value = lastLeftShiftValue;
+                keyStateService.KeyDownStates[KeyValues.LeftCtrlKey].Value = lastLeftCtrlValue;
+                keyStateService.KeyDownStates[KeyValues.LeftWinKey].Value = lastLeftWinValue;
+                keyStateService.KeyDownStates[KeyValues.LeftAltKey].Value = lastLeftAltValue;
+                keyStateService.KeyDownStates[KeyValues.MouseMagnifierKey].Value = lastMagnifierValue;
+
+                Settings.Default.MouseScrollAmountInClicks = lastScrollSetting;    
+                Keyboard = currentKeyboard;
+
+                // Clear the keyboard when leaving keyboard.
+                // TODO: Actually you shouldn't use the scratchpas at all, this is a bit hacky 
+                keyboardOutputService.ProcessFunctionKey(FunctionKeys.ClearScratchpad);
+
+            };
+                        
+            Keyboard = new CustomKeyboard();
+
+            // Set everything else appropriately
+            keyStateService.KeyDownStates[KeyValues.LeftShiftKey].Value = KeyDownStates.Up;
+            keyStateService.KeyDownStates[KeyValues.LeftWinKey].Value = KeyDownStates.Up;
+            keyStateService.KeyDownStates[KeyValues.LeftCtrlKey].Value = KeyDownStates.Up;
+            keyStateService.KeyDownStates[KeyValues.MouseMagnifierKey].Value = KeyDownStates.LockedDown;
+            Settings.Default.MouseScrollAmountInClicks = 1;
+
         }
 
         private void ProcessKeyValuePress(KeyValuePress keyValue)
@@ -492,7 +530,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                     Log.Info("Changing keyboard to Menu.");
                     Keyboard = new Menu(() => Keyboard = currentKeyboard);
                     break;
-
+                   
                 case FunctionKeys.Minimise:
                     Log.Info("Minimising window.");
                     mainWindowManipulationService.Minimise();

@@ -326,6 +326,7 @@
     <Compile Include="UI\Controls\KeyPressKey.cs" />
     <Compile Include="UI\Controls\LinkKey.cs" />
     <Compile Include="UI\Controls\TextKey.cs" />
+    <Compile Include="UI\Controls\CustomKeyboard.cs" />
     <Compile Include="UI\Controls\ToastNotification.cs" />
     <Compile Include="UI\Controls\Cursor.cs" />
     <Compile Include="UI\Controls\ToastNotificationPopup.cs" />
@@ -615,7 +616,7 @@
     <Content Include="Dictionaries\DanishDenmark.dic">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Dictionaries\SlovenianSlovenia.dic">    
+    <Content Include="Dictionaries\SlovenianSlovenia.dic">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="nbug.config">

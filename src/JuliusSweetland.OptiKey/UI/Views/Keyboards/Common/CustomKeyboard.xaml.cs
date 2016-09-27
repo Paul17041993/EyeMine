@@ -1,4 +1,4 @@
-﻿using JuliusSweetland.OptiKey.UI.Controls;
+using JuliusSweetland.OptiKey.UI.Controls;
 using System.Windows.Controls;
 using JuliusSweetland.OptiKey.Models;
 
@@ -48,7 +48,6 @@ namespace JuliusSweetland.OptiKey.UI.Views.Keyboards.Common
             Grid.SetRow(newKey2, 1);
             Grid.SetColumnSpan(newKey2, 2);
             
-            MainGrid.Children.Add(newBtn);       
         }
     }
 }
