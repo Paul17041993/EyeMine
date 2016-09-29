@@ -15,7 +15,7 @@ namespace JuliusSweetland.OptiKey.Observables.TriggerSources
         #region Fields
 
         private readonly Keys triggerKey;
-        private readonly IObservable<Timestamped<PointAndKeyValue?>> pointAndKeyValueSource;
+        private readonly IObservable<Timestamped<PointAndKeyValue>> pointAndKeyValueSource;
         private readonly KeyboardHookListener keyboardHookListener;
 
         private IObservable<TriggerSignal> sequence;
@@ -26,7 +26,7 @@ namespace JuliusSweetland.OptiKey.Observables.TriggerSources
 
         public KeyboardKeyDownUpSource(
             Enums.Keys triggerKey,
-            IObservable<Timestamped<PointAndKeyValue?>> pointAndKeyValueSource)
+            IObservable<Timestamped<PointAndKeyValue>> pointAndKeyValueSource)
         {
             this.triggerKey = (System.Windows.Forms.Keys)triggerKey; //Cast to the Windows.Forms.Keys enum
             this.pointAndKeyValueSource = pointAndKeyValueSource;

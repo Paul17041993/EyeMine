@@ -15,7 +15,7 @@ namespace JuliusSweetland.OptiKey.Observables.TriggerSources
         #region Fields
 
         private readonly MouseButtons triggerButton;
-        private readonly IObservable<Timestamped<PointAndKeyValue?>> pointAndKeyValueSource;
+        private readonly IObservable<Timestamped<PointAndKeyValue>> pointAndKeyValueSource;
         private readonly MouseHookListener mouseHookListener;
 
         private IObservable<TriggerSignal> sequence;
@@ -26,7 +26,7 @@ namespace JuliusSweetland.OptiKey.Observables.TriggerSources
 
         public MouseButtonDownUpSource(
             Enums.MouseButtons triggerButton,
-            IObservable<Timestamped<PointAndKeyValue?>> pointAndKeyValueSource)
+            IObservable<Timestamped<PointAndKeyValue>> pointAndKeyValueSource)
         {
             this.triggerButton = (System.Windows.Forms.MouseButtons)triggerButton; //Cast to the Windows.Forms.MouseButtons enum
             this.pointAndKeyValueSource = pointAndKeyValueSource;

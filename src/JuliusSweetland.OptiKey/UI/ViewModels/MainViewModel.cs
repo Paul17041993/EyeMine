@@ -39,7 +39,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
         
         private SelectionModes selectionMode;
         private Point currentPositionPoint;
-        private KeyValue? currentPositionKey;
+        private KeyValue currentPositionKey;
         private Tuple<Point, double> pointSelectionProgress;
         private Dictionary<Rect, KeyValue> pointToKeyValueMap;
         private bool showCursor;
@@ -188,7 +188,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
             set { SetProperty(ref currentPositionPoint, value); }
         }
 
-        public KeyValue? CurrentPositionKey
+        public KeyValue CurrentPositionKey
         {
             get { return currentPositionKey; }
             set { SetProperty(ref currentPositionKey, value); }
