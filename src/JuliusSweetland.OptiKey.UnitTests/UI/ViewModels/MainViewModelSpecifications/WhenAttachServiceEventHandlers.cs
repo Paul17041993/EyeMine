@@ -84,7 +84,7 @@ namespace JuliusSweetland.OptiKey.UnitTests.UI.ViewModels.MainViewModelSpecifica
         {
             var point = new Point(27, 10);
             var keyValue = new KeyValue();
-            InputService.Raise(s => s.CurrentPosition += null, this, new Tuple<Point, KeyValue?>(point, keyValue));
+            InputService.Raise(s => s.CurrentPosition += null, this, new Tuple<Point, KeyValue>(point, keyValue));
 
             Assert.AreEqual(point, MainViewModel.CurrentPositionPoint);
             Assert.AreEqual(keyValue, MainViewModel.CurrentPositionKey);
@@ -110,7 +110,7 @@ namespace JuliusSweetland.OptiKey.UnitTests.UI.ViewModels.MainViewModelSpecifica
         {
             var point = new Point(27, 10);
             var keyValue = new KeyValue();
-            InputService.Raise(s => s.CurrentPosition += null, this, new Tuple<Point, KeyValue?>(point, keyValue));
+            InputService.Raise(s => s.CurrentPosition += null, this, new Tuple<Point, KeyValue>(point, keyValue));
 
             Assert.AreEqual(point, MainViewModel.CurrentPositionPoint);
             Assert.AreEqual(keyValue, MainViewModel.CurrentPositionKey);
@@ -137,7 +137,8 @@ namespace JuliusSweetland.OptiKey.UnitTests.UI.ViewModels.MainViewModelSpecifica
         [Test]
         public void ThenSelectionProgressShouldBeReset()
         {
-            InputService.Raise(s => s.SelectionProgress += null, this, new Tuple<PointAndKeyValue?, double>(null, 0));
+
+            InputService.Raise(s => s.SelectionProgress += null, this, new Tuple<PointAndKeyValue, double>(null, 0));
 
             Assert.IsNull(MainViewModel.PointSelectionProgress);
 
@@ -169,7 +170,7 @@ namespace JuliusSweetland.OptiKey.UnitTests.UI.ViewModels.MainViewModelSpecifica
         [Test]
         public void ThenKeySelectionProgressOnKeyStateServiceShouldBeSet()
         {
-            InputService.Raise(s => s.SelectionProgress += null, this, new Tuple<PointAndKeyValue?, double>(
+            InputService.Raise(s => s.SelectionProgress += null, this, new Tuple<PointAndKeyValue, double>(
                 new PointAndKeyValue(new Point(), KeyValueToAssert), 14));
 
             Assert.AreEqual(14, KeySelectionProgress[KeyValueToAssert].Value);
@@ -191,7 +192,7 @@ namespace JuliusSweetland.OptiKey.UnitTests.UI.ViewModels.MainViewModelSpecifica
         {
             var pointAndKeyValue = new PointAndKeyValue(new Point(), new KeyValue());
 
-            InputService.Raise(s => s.SelectionProgress += null, this, new Tuple<PointAndKeyValue?, double>(
+            InputService.Raise(s => s.SelectionProgress += null, this, new Tuple<PointAndKeyValue, double>(
                 pointAndKeyValue, 83));
 
             Assert.IsNotNull(MainViewModel.PointSelectionProgress);
