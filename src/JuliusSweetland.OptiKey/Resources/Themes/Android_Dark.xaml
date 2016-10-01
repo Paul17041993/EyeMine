@@ -430,7 +430,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-
+            
             <Style TargetType="{x:Type controls:Scratchpad}">
                 <Setter Property="Template">
                     <Setter.Value>
