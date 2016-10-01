@@ -99,10 +99,8 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                 Log.Info("SelectionResult event received from InputService.");
 
                 var points = tuple.Item1;
-                var singleKeyValue = tuple.Item2 != null || tuple.Item3 != null
-                    ? new KeyValue (tuple.Item2, tuple.Item3 )
-                    : (KeyValue)null;
-                var multiKeySelection = tuple.Item4;
+                var singleKeyValue = tuple.Item2;
+                var multiKeySelection = tuple.Item3;
 
                 SelectionResultPoints = points; //Store captured points from SelectionResult event (displayed for debugging)
 

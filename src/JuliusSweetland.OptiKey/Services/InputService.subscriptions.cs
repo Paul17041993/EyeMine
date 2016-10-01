@@ -184,10 +184,9 @@ namespace JuliusSweetland.OptiKey.Services
                             {
                                 PublishSelection(triggerSignal.PointAndKeyValue);
 
-                                PublishSelectionResult(new Tuple<List<Point>, FunctionKeys?, string, List<string>>(
+                                PublishSelectionResult(new Tuple<List<Point>, KeyValue, List<string>>(
                                     new List<Point> { triggerSignal.PointAndKeyValue.Point },
-                                    triggerSignal.PointAndKeyValue.KeyValue.FunctionKey,
-                                    triggerSignal.PointAndKeyValue.KeyValue.String,
+                                    triggerSignal.PointAndKeyValue.KeyValue,
                                     null));
                             }
                         }
@@ -200,8 +199,8 @@ namespace JuliusSweetland.OptiKey.Services
                     {
                         PublishSelection(triggerSignal.PointAndKeyValue);
 
-                        PublishSelectionResult(new Tuple<List<Point>, FunctionKeys?, string, List<string>>(
-                            new List<Point> { triggerSignal.PointAndKeyValue.Point }, null, null, null));
+                        PublishSelectionResult(new Tuple<List<Point>, KeyValue, List<string>>(
+                            new List<Point> { triggerSignal.PointAndKeyValue.Point }, null, null));
                     }
                 }
                 else
@@ -336,7 +335,7 @@ namespace JuliusSweetland.OptiKey.Services
                     //Why am I wrapping this call in a Task.Run? Internally the MapCaptureToEntries method uses PLINQ which also blocks the UI thread - this frees it up.
                     //This cannot be done inside the MapCaptureToEntries method as the method takes a ref param, which cannot be used inside an anonymous delegate or lambda.
                     //The method cannot be made awaitable as async/await also does not support ref params.
-                    Tuple<List<Point>, FunctionKeys?, string, List<string>> result = null;
+                    Tuple<List<Point>, KeyValue, List<string>> result = null;
                     await Task.Run(() =>
                     {
                         result = dictionaryService.MapCaptureToEntries(
@@ -348,8 +347,8 @@ namespace JuliusSweetland.OptiKey.Services
 
                     if (result != null)
                     {
-                        if (result.Item2 == null && result.Item3 == null &&
-                            (result.Item4 == null || !result.Item4.Any()))
+                        if (result.Item2 == null && 
+                            (result.Item3 == null || !result.Item3.Any()))
                         {
                             //Nothing useful in the result - play error message. Publish anyway as the points can be rendered in debugging mode.
                             audioService.PlaySound(Settings.Default.ErrorSoundFile, Settings.Default.ErrorSoundVolume);
