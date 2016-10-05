@@ -360,7 +360,7 @@ namespace JuliusSweetland.OptiKey.UI.Controls
 
         private void TraverseAllKeysAndBuildPointToKeyValueMap()
         {
-            var allKeys = VisualAndLogicalTreeHelper.FindVisualChildren<Key>(this).ToList();
+            var allKeys = VisualAndLogicalTreeHelper.FindVisualChildren<KeyBase>(this).ToList();
 
             var pointToKeyValueMap = new Dictionary<Rect, KeyValue>();
 
