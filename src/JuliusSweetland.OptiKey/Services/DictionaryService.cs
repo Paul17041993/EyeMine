@@ -460,7 +460,7 @@ namespace JuliusSweetland.OptiKey.Services
 
                 var charsWithCount = timestampedPointAndKeyValues != null
                     ? timestampedPointAndKeyValues
-                        .Where(tp => tp.Value.StringIsLetter)
+                        .Where(tp => tp.Value != null && tp.Value.StringIsLetter)
                         .Select(tp => tp.Value.String)
                         .ToCharListWithCounts()
                     : new List<Tuple<char, char, int>>();
