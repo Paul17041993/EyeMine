@@ -236,7 +236,7 @@ namespace JuliusSweetland.OptiKey.UI.Controls
 
         private static void TextChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
-            var key = dependencyObject as Key;
+            var key = dependencyObject as KeyBase;
             
             if (key != null)
             {
