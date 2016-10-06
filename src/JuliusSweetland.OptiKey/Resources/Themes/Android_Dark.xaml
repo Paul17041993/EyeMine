@@ -432,7 +432,11 @@
             </Style>
             
             <!-- Make sure all inherited Key controls take same style as base Key class -->
+            <Style TargetType="{x:Type controls:TextKey}" BasedOn="{StaticResource {x:Type controls:KeyBase}}" />
             <Style TargetType="{x:Type controls:Key}" BasedOn="{StaticResource {x:Type controls:KeyBase}}" />
+            <Style TargetType="{x:Type controls:BehaviourKey}" BasedOn="{StaticResource {x:Type controls:KeyBase}}" />
+            <Style TargetType="{x:Type controls:LinkKey}" BasedOn="{StaticResource {x:Type controls:KeyBase}}" />
+            <Style TargetType="{x:Type controls:KeyPressKey}" BasedOn="{StaticResource {x:Type controls:KeyBase}}" />
 
             <Style TargetType="{x:Type controls:Scratchpad}">
                 <Setter Property="Template">

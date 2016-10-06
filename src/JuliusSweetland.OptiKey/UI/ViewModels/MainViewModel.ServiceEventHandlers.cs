@@ -118,29 +118,61 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
             inputService.PointToKeyValueMap = pointToKeyValueMap;
             inputService.SelectionMode = SelectionMode;
         }
+
+        private void ProcessKeyValueLink(KeyValueLink keyValue)
+        {
+            // Placeholder for now
+            Log.InfoFormat("link key found! {0}", keyValue.ToString());            
+        }
+
+        private void ProcessKeyValuePress(KeyValuePress keyValue)
+        {
+            // Placeholder for now
+            Log.InfoFormat("keypress key found! link = {0}", keyValue.ToString());            
+        }
+
+        private void ProcessBasicKeyValue(KeyValue singleKeyValue)
+        {
+            Log.InfoFormat("KeySelectionResult received with string value '{0}' and function key values '{1}'",
+                singleKeyValue.String.ToPrintableString(), singleKeyValue.FunctionKey);
+
+            keyStateService.ProgressKeyDownState(singleKeyValue);
+
+            if (!string.IsNullOrEmpty(singleKeyValue.String))
+            {
+                //Single key string
+                keyboardOutputService.ProcessSingleKeyText(singleKeyValue.String);
+            }
+
+            if (singleKeyValue.FunctionKey != null)
+            {
+                //Single key function key
+                HandleFunctionKeySelectionResult(singleKeyValue);
+            }
+        }
         
         private void KeySelectionResult(KeyValue singleKeyValue, List<string> multiKeySelection)
         {
-            //Single key
+            // Pass single key to appropriate processing function
             if (singleKeyValue != null)
             {
-                Log.InfoFormat("KeySelectionResult received with string value '{0}' and function key values '{1}'", 
-                    singleKeyValue.String.ToPrintableString(), singleKeyValue.FunctionKey);
+                KeyValueLink kv_link = singleKeyValue as KeyValueLink;
+                KeyValuePress kv_press = singleKeyValue as KeyValuePress;
 
-                keyStateService.ProgressKeyDownState(singleKeyValue);
-
-                if (!string.IsNullOrEmpty(singleKeyValue.String))
+                if (kv_link != null)
                 {
-                    //Single key string
-                    keyboardOutputService.ProcessSingleKeyText(singleKeyValue.String);
+                    ProcessKeyValueLink(kv_link);
                 }
-
-                if (singleKeyValue.FunctionKey != null)
+                else if (kv_press != null) 
                 {
-                    //Single key function key
-                    HandleFunctionKeySelectionResult(singleKeyValue);
+                    ProcessKeyValuePress(kv_press);
+                }
+                else 
+                {
+                    ProcessBasicKeyValue(singleKeyValue);
                 }
             }
+            
             
             //Multi key selection
             if (multiKeySelection != null

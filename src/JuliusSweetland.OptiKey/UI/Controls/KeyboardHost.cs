@@ -369,8 +369,7 @@ namespace JuliusSweetland.OptiKey.UI.Controls
             foreach (var key in allKeys)
             {
                 if (key.Value != null &&
-                     (key.Value.FunctionKey != null
-                     || key.Value.String != null) )
+                    key.Value.HasContent() )
                 {
                     var rect = new Rect
                     {

@@ -230,6 +230,8 @@
     <Compile Include="Models\ILastMouseActionStateManager.cs" />
     <Compile Include="Models\KeyboardOutputServiceState.cs" />
     <Compile Include="Models\KeyStateServiceState.cs" />
+    <Compile Include="Models\KeyValuePress.cs" />
+    <Compile Include="Models\KeyValueLink.cs" />
     <Compile Include="Models\KeyValueAndTimeSpanGroup.cs" />
     <Compile Include="Models\KeyValueAndTimeSpan.cs" />
     <Compile Include="Models\LastMouseActionStateManager.cs" />
@@ -318,8 +320,12 @@
     <Compile Include="UI\Behaviours\TextBoxBehaviours.cs" />
     <Compile Include="UI\Behaviours\KeyBehaviours.cs" />
     <Compile Include="UI\Behaviours\ScrollViewerBehaviours.cs" />
+    <Compile Include="UI\Controls\BehaviourKey.cs" />
     <Compile Include="UI\Controls\KeyBase.cs" />
     <Compile Include="UI\Controls\KeyboardView.cs" />
+    <Compile Include="UI\Controls\KeyPressKey.cs" />
+    <Compile Include="UI\Controls\LinkKey.cs" />
+    <Compile Include="UI\Controls\TextKey.cs" />
     <Compile Include="UI\Controls\ToastNotification.cs" />
     <Compile Include="UI\Controls\Cursor.cs" />
     <Compile Include="UI\Controls\ToastNotificationPopup.cs" />
