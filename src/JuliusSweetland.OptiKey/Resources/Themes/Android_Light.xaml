@@ -85,7 +85,7 @@
                 <Setter Property="TextAlignment" Value="Center" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
                 <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="Text" Value="{Binding Path=ShiftUpText, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}}" />
+                <Setter Property="Text" Value="{Binding Path=ShiftUpText, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}}" />
                 <Setter Property="FontFamily" Value="{Binding Source={x:Static properties:Settings.Default}, Path=FontFamily}" />
                 <Setter Property="FontWeight" Value="{Binding Source={x:Static properties:Settings.Default}, Path=FontWeight}" />
                 <Setter Property="FontStretch" Value="{Binding Source={x:Static properties:Settings.Default}, Path=FontStretch}" />
@@ -104,8 +104,8 @@
                     <!--If there is text, but no symbol then always display the text-->
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Path=HasText, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="True" />
-                            <Condition Binding="{Binding Path=HasSymbol, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="False" />
+                            <Condition Binding="{Binding Path=HasText, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="True" />
+                            <Condition Binding="{Binding Path=HasSymbol, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="False" />
                         </MultiDataTrigger.Conditions>
                         <MultiDataTrigger.Setters>
                             <Setter Property="Visibility" Value="Visible" />
@@ -115,9 +115,9 @@
                     <!--If there is text and a symbol then display the text when the key is current -->
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Path=HasText, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="True" />
-                            <Condition Binding="{Binding Path=HasSymbol, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="True" />
-                            <Condition Binding="{Binding Path=IsCurrent, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="True" />
+                            <Condition Binding="{Binding Path=HasText, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="True" />
+                            <Condition Binding="{Binding Path=HasSymbol, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="True" />
+                            <Condition Binding="{Binding Path=IsCurrent, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="True" />
                         </MultiDataTrigger.Conditions>
                         <MultiDataTrigger.Setters>
                             <Setter Property="Visibility" Value="Visible" />
@@ -127,9 +127,9 @@
                     <!-- Also display the text is the key is progressing -->
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Path=HasText, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="True" />
-                            <Condition Binding="{Binding Path=HasSymbol, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="True" />
-                            <Condition Binding="{Binding Path=SelectionInProgress, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="True" />
+                            <Condition Binding="{Binding Path=HasText, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="True" />
+                            <Condition Binding="{Binding Path=HasSymbol, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="True" />
+                            <Condition Binding="{Binding Path=SelectionInProgress, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="True" />
                         </MultiDataTrigger.Conditions>
                         <MultiDataTrigger.Setters>
                             <Setter Property="Visibility" Value="Visible" />
@@ -137,27 +137,27 @@
                     </MultiDataTrigger>
 
                     <!--This key is in a key down state of Down-->
-                    <DataTrigger Binding="{Binding Path=KeyDownState, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="{x:Static enums:KeyDownStates.Down}">
+                    <DataTrigger Binding="{Binding Path=KeyDownState, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="{x:Static enums:KeyDownStates.Down}">
                         <Setter Property="Foreground" Value="{StaticResource KeyDownStateIsDownForegroundBrush}" />
                     </DataTrigger>
 
                     <!--This key is in a key down state of Locked Down-->
-                    <DataTrigger Binding="{Binding Path=KeyDownState, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="{x:Static enums:KeyDownStates.LockedDown}">
+                    <DataTrigger Binding="{Binding Path=KeyDownState, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="{x:Static enums:KeyDownStates.LockedDown}">
                         <Setter Property="Foreground" Value="{StaticResource KeyDownStateIsDownForegroundBrush}" />
                     </DataTrigger>
 
                     <!--The Shift key is down-->
-                    <DataTrigger Binding="{Binding Path=DisplayShiftDownText, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="True">
-                        <Setter Property="Text" Value="{Binding Path=ShiftDownText, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" />
+                    <DataTrigger Binding="{Binding Path=DisplayShiftDownText, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="True">
+                        <Setter Property="Text" Value="{Binding Path=ShiftDownText, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" />
                     </DataTrigger>
 
                     <!--Is Key Enabled-->
-                    <DataTrigger Binding="{Binding Path=IsEnabled, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="False">
+                    <DataTrigger Binding="{Binding Path=IsEnabled, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="False">
                         <Setter Property="Foreground" Value="{StaticResource KeyDisabledForegroundBrush}" />
                     </DataTrigger>
 
                     <!--Use Unicode compatibility font (for rendering characters that may be unsupported in the user specified font)-->
-                    <DataTrigger Binding="{Binding Path=UseUnicodeCompatibilityFont, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="True">
+                    <DataTrigger Binding="{Binding Path=UseUnicodeCompatibilityFont, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="True">
                         <Setter Property="FontFamily" Value="/Resources/Fonts/#CharisSIL" />
                         <Setter Property="FontWeight" Value="Regular" />
                         <Setter Property="FontStretch" Value="Normal" />
@@ -168,7 +168,7 @@
             <Style x:Key="KeySymbolStyle" TargetType="{x:Type Path}">
                 <Setter Property="Stretch" Value="Uniform" />
                 <Setter Property="Margin" Value="2" />
-                <Setter Property="Data" Value="{Binding Path=SymbolGeometry, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" />
+                <Setter Property="Data" Value="{Binding Path=SymbolGeometry, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" />
                 <Setter Property="Fill" Value="{StaticResource KeyDefaultForegroundBrush}" />
                 <Setter Property="Visibility" Value="Collapsed" />
                 <Setter Property="behaviours:KeyBehaviours.BeginAnimationOnKeySelectionEvent">
@@ -183,15 +183,15 @@
                 </Setter>
                 <Style.Triggers>
                     <!--Is there a symbol to display-->
-                    <DataTrigger Binding="{Binding Path=HasSymbol, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="True">
+                    <DataTrigger Binding="{Binding Path=HasSymbol, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="True">
                         <Setter Property="Visibility" Value="Visible" />
                     </DataTrigger>
 
                     <!--Collapse symbol to promote key's Text if there is Text and the key is current-->
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Path=HasText, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="True" />
-                            <Condition Binding="{Binding Path=IsCurrent, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="True" />
+                            <Condition Binding="{Binding Path=HasText, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="True" />
+                            <Condition Binding="{Binding Path=IsCurrent, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="True" />
                         </MultiDataTrigger.Conditions>
                         <MultiDataTrigger.Setters>
                             <Setter Property="Visibility" Value="Collapsed" />
@@ -201,8 +201,8 @@
                     <!-- ...or if there's Text and the key is progressing -->
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Path=HasText, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="True" />
-                            <Condition Binding="{Binding Path=SelectionInProgress, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="True" />
+                            <Condition Binding="{Binding Path=HasText, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="True" />
+                            <Condition Binding="{Binding Path=SelectionInProgress, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="True" />
                         </MultiDataTrigger.Conditions>
                         <MultiDataTrigger.Setters>
                             <Setter Property="Visibility" Value="Collapsed" />
@@ -210,22 +210,22 @@
                     </MultiDataTrigger>
 
                     <!--This key is in a key down state of Down-->
-                    <DataTrigger Binding="{Binding Path=KeyDownState, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="{x:Static enums:KeyDownStates.Down}">
+                    <DataTrigger Binding="{Binding Path=KeyDownState, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="{x:Static enums:KeyDownStates.Down}">
                         <Setter Property="Fill" Value="{StaticResource KeyDownStateIsDownForegroundBrush}" />
                     </DataTrigger>
 
                     <!--This key is in a key down state of Locked Down-->
-                    <DataTrigger Binding="{Binding Path=KeyDownState, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="{x:Static enums:KeyDownStates.LockedDown}">
+                    <DataTrigger Binding="{Binding Path=KeyDownState, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="{x:Static enums:KeyDownStates.LockedDown}">
                         <Setter Property="Fill" Value="{StaticResource KeyDownStateIsLockedDownForegroundBrush}" />
                     </DataTrigger>
 
                     <!--Is Key Enabled-->
-                    <DataTrigger Binding="{Binding Path=IsEnabled, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="False">
+                    <DataTrigger Binding="{Binding Path=IsEnabled, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="False">
                         <Setter Property="Fill" Value="{StaticResource KeyDisabledForegroundBrush}" />
                     </DataTrigger>
 
                     <!--Symbol Orientation to right-->
-                    <DataTrigger Binding="{Binding Path=SymbolOrientation, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="{x:Static enums:SymbolOrientations.Right}">
+                    <DataTrigger Binding="{Binding Path=SymbolOrientation, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="{x:Static enums:SymbolOrientations.Right}">
                         <Setter Property="LayoutTransform">
                             <Setter.Value>
                                 <TransformGroup>
@@ -236,7 +236,7 @@
                     </DataTrigger>
 
                     <!--Symbol Orientation to bottom-->
-                    <DataTrigger Binding="{Binding Path=SymbolOrientation, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="{x:Static enums:SymbolOrientations.Bottom}">
+                    <DataTrigger Binding="{Binding Path=SymbolOrientation, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="{x:Static enums:SymbolOrientations.Bottom}">
                         <Setter Property="LayoutTransform">
                             <Setter.Value>
                                 <TransformGroup>
@@ -247,7 +247,7 @@
                     </DataTrigger>
 
                     <!--Symbol Orientation to left-->
-                    <DataTrigger Binding="{Binding Path=SymbolOrientation, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="{x:Static enums:SymbolOrientations.Left}">
+                    <DataTrigger Binding="{Binding Path=SymbolOrientation, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="{x:Static enums:SymbolOrientations.Left}">
                         <Setter Property="LayoutTransform">
                             <Setter.Value>
                                 <TransformGroup>
@@ -268,12 +268,12 @@
                 <Setter Property="Data" Value="{StaticResource PadlockIcon}" />
                 <Style.Triggers>
                     <!--This key is in a key down state of Locked Down-->
-                    <DataTrigger Binding="{Binding Path=KeyDownState, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="{x:Static enums:KeyDownStates.LockedDown}">
+                    <DataTrigger Binding="{Binding Path=KeyDownState, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="{x:Static enums:KeyDownStates.LockedDown}">
                         <Setter Property="Visibility" Value="Visible" />
                     </DataTrigger>
 
                     <!--Is Key Enabled-->
-                    <DataTrigger Binding="{Binding Path=IsEnabled, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="False">
+                    <DataTrigger Binding="{Binding Path=IsEnabled, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="False">
                         <Setter Property="Fill" Value="{StaticResource KeyDisabledForegroundBrush}" />
                     </DataTrigger>
                 </Style.Triggers>
@@ -282,7 +282,7 @@
             <Style x:Key="KeySelectionProgressStyle" TargetType="{x:Type controls:ProgressIndicator}">
                 <Setter Property="Fill" Value="{StaticResource KeySelectionProgressBrush}" />
                 <Setter Property="MaxValue" Value="1" />
-                <Setter Property="Value" Value="{Binding Path=SelectionProgress, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" />
+                <Setter Property="Value" Value="{Binding Path=SelectionProgress, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" />
                 <Style.Triggers>
                     <!--Progress is 0-->
                     <Trigger Property="Value" Value="0">
@@ -290,7 +290,7 @@
                     </Trigger>
 
                     <!--Is Key Enabled-->
-                    <DataTrigger Binding="{Binding Path=IsEnabled, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="False">
+                    <DataTrigger Binding="{Binding Path=IsEnabled, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="False">
                         <Setter Property="Visibility" Value="Hidden" />
                     </DataTrigger>
                 </Style.Triggers>
@@ -317,19 +317,19 @@
                 </Setter>
                 <Style.Triggers>
                     <!--This key is in a key down state of On-->
-                    <DataTrigger Binding="{Binding Path=KeyDownState, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="{x:Static enums:KeyDownStates.Down}">
+                    <DataTrigger Binding="{Binding Path=KeyDownState, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="{x:Static enums:KeyDownStates.Down}">
                         <Setter Property="BorderBrush" Value="{StaticResource KeyDownStateIsDownBorderBrush}" />
                         <Setter Property="Background" Value="{StaticResource KeyDownStateIsDownBackgroundBrush}" />
                     </DataTrigger>
 
                     <!--This key is in a key down state of Lock-->
-                    <DataTrigger Binding="{Binding Path=KeyDownState, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="{x:Static enums:KeyDownStates.LockedDown}">
+                    <DataTrigger Binding="{Binding Path=KeyDownState, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="{x:Static enums:KeyDownStates.LockedDown}">
                         <Setter Property="BorderBrush" Value="{StaticResource KeyDownStateIsLockedDownBorderBrush}" />
                         <Setter Property="Background" Value="{StaticResource KeyDownStateIsLockedDownBackgroundBrush}" />
                     </DataTrigger>
 
                     <!--Is Key Enabled-->
-                    <DataTrigger Binding="{Binding Path=IsEnabled, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="False">
+                    <DataTrigger Binding="{Binding Path=IsEnabled, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="False">
                         <Setter Property="BorderBrush" Value="{StaticResource KeyDisabledBorderBrush}" />
                         <Setter Property="Background" Value="{StaticResource KeyDisabledBackgroundBrush}" />
                     </DataTrigger>
@@ -347,21 +347,21 @@
                 <Setter Property="Visibility" Value="Collapsed" />
                 <Style.Triggers>
                     <!--Is Key Enabled-->
-                    <DataTrigger Binding="{Binding Path=IsEnabled, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="False">
+                    <DataTrigger Binding="{Binding Path=IsEnabled, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="False">
                         <Setter Property="BorderBrush" Value="{StaticResource KeyDisabledForegroundBrush}" />
                     </DataTrigger>
 
                     <!--Make visible when this key is current-->
-                    <DataTrigger Binding="{Binding Path=IsCurrent, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}, Mode=OneWay}" Value="True">
+                    <DataTrigger Binding="{Binding Path=IsCurrent, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}, Mode=OneWay}" Value="True">
                         <Setter Property="Visibility" Value="Visible" />
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
 
-            <Style TargetType="{x:Type controls:Key}">
+            <Style TargetType="{x:Type controls:KeyBase}">
                 <Setter Property="Template">
                     <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type controls:Key}">
+                        <ControlTemplate TargetType="{x:Type controls:KeyBase}">
                             <Grid>
                                 <Border Style="{StaticResource KeyBorderStyle}">
                                     <Grid>
@@ -376,7 +376,7 @@
                                                 <MultiBinding Converter="{StaticResource LengthDividedBySpan}">
                                                     <MultiBinding.Bindings>
                                                         <Binding Path="ActualWidth" RelativeSource="{RelativeSource AncestorType={x:Type Grid}}" />
-                                                        <Binding Path="WidthSpan" RelativeSource="{RelativeSource AncestorType={x:Type controls:Key}}" />
+                                                        <Binding Path="WidthSpan" RelativeSource="{RelativeSource AncestorType={x:Type controls:KeyBase}}" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </ContentControl.MaxWidth>
@@ -384,7 +384,7 @@
                                                 <MultiBinding Converter="{StaticResource LengthDividedBySpan}">
                                                     <MultiBinding.Bindings>
                                                         <Binding Path="ActualHeight" RelativeSource="{RelativeSource AncestorType={x:Type Grid}}" />
-                                                        <Binding Path="HeightSpan" RelativeSource="{RelativeSource AncestorType={x:Type controls:Key}}" />
+                                                        <Binding Path="HeightSpan" RelativeSource="{RelativeSource AncestorType={x:Type controls:KeyBase}}" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </ContentControl.MaxHeight>
@@ -404,7 +404,7 @@
                                                             <Setter Property="Grid.Column" Value="1" />
                                                             <Setter Property="Grid.ColumnSpan" Value="3" />
                                                             <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding Path=HasSymbol, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}}" Value="False">
+                                                                <DataTrigger Binding="{Binding Path=HasSymbol, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}}" Value="False">
                                                                     <Setter Property="Grid.Column" Value="2" />
                                                                     <Setter Property="Grid.ColumnSpan" Value="1" />
                                                                 </DataTrigger>
@@ -413,7 +413,7 @@
                                                     </Viewbox.Style>
                                                     <Grid>
                                                         <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition SharedSizeGroup="{Binding Path=SharedSizeGroup, RelativeSource={RelativeSource AncestorType={x:Type controls:Key}}}" />
+                                                            <ColumnDefinition SharedSizeGroup="{Binding Path=SharedSizeGroup, RelativeSource={RelativeSource AncestorType={x:Type controls:KeyBase}}}" />
                                                         </Grid.ColumnDefinitions>
                                                         <TextBlock Style="{StaticResource KeyTextStyle}" />
                                                         <Path Style="{StaticResource KeySymbolStyle}" Width="64" Height="64" VerticalAlignment="Center" />
@@ -430,6 +430,13 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+            <!-- Make sure all inherited Key controls take same style as base Key class -->
+            <Style TargetType="{x:Type controls:TextKey}" BasedOn="{StaticResource {x:Type controls:KeyBase}}" />
+            <Style TargetType="{x:Type controls:KeyBase}" BasedOn="{StaticResource {x:Type controls:KeyBase}}" />
+            <Style TargetType="{x:Type controls:BehaviourKey}" BasedOn="{StaticResource {x:Type controls:KeyBase}}" />
+            <Style TargetType="{x:Type controls:LinkKey}" BasedOn="{StaticResource {x:Type controls:KeyBase}}" />
+            <Style TargetType="{x:Type controls:KeyPressKey}" BasedOn="{StaticResource {x:Type controls:KeyBase}}" />
 
             <Style TargetType="{x:Type controls:Scratchpad}">
                 <Setter Property="Template">
