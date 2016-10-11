@@ -255,6 +255,38 @@ namespace JuliusSweetland.OptiKey.Services
             lastTextChangeWasSuggestion = false;
         }
 
+        public void ProcessSingleKeyPress(string key, KeyValuePress.KeyPressType type, int delayMs = 0)
+        {
+            // TODO: convert from string to virtual key code
+            // e.g. if (single char) { char.ToVirtualKeyCode(); }
+            //      else TryParse from string to enum to Keycode via lookup table.
+            char character = "a".ToCharArray()[0]; //ugh. just for testing, honest!
+            VirtualKeyCode? virtualKeyCode = character.ToVirtualKeyCode();
+
+            Log.Info(type);
+            type = KeyValuePress.KeyPressType.PressAndRelease;
+            if (virtualKeyCode.HasValue) {
+                if (type == KeyValuePress.KeyPressType.Press) {
+                    publishService.KeyDown(virtualKeyCode.Value);
+                }
+                else if (type == KeyValuePress.KeyPressType.Release) {
+                    publishService.KeyUp(virtualKeyCode.Value);
+                }
+                else {
+                    publishService.KeyDown(virtualKeyCode.Value);
+                    // TODO: delay!
+                    publishService.KeyUp(virtualKeyCode.Value);
+                }
+            }
+            else
+            {
+                Log.InfoFormat("No virtual key code found for '{0}' so publishing as text",
+                    character.ToPrintableString());
+                publishService.TypeText(character.ToString());
+            }
+        }
+
+
         private string ComposeDiacritics(string input)
         {
             Log.InfoFormat("Composing diacritics on '{0}'", input);

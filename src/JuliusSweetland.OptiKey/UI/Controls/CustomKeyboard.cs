@@ -3,9 +3,10 @@ using JuliusSweetland.OptiKey.UI.ViewModels.Keyboards.Base;
 
 namespace JuliusSweetland.OptiKey.UI.ViewModels.Keyboards
 {
-    public class CustomKeyboard : Keyboard
+    public class CustomKeyboard : BackActionKeyboard
     {
-        public CustomKeyboard()
+        public CustomKeyboard(Action backAction)
+            : base(backAction)
         {
         }
     }

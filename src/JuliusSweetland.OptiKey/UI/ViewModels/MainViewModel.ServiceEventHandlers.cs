@@ -152,7 +152,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
 
             };
                         
-            Keyboard = new CustomKeyboard();
+            Keyboard = new CustomKeyboard(backAction);
 
             // Set everything else appropriately
             keyStateService.KeyDownStates[KeyValues.LeftShiftKey].Value = KeyDownStates.Up;
@@ -166,7 +166,8 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
         private void ProcessKeyValuePress(KeyValuePress keyValue)
         {
             // Placeholder for now
-            Log.InfoFormat("keypress key found! link = {0}", keyValue.ToString());            
+            Log.InfoFormat("keypress key found! : {0}", keyValue.ToString());
+            keyboardOutputService.ProcessSingleKeyPress(keyValue.Key, keyValue.Type, keyValue.DurationMs);
         }
 
         private void ProcessBasicKeyValue(KeyValue singleKeyValue)
