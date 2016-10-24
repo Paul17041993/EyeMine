@@ -51,11 +51,13 @@
                       Text="Dynamic!"
                       SharedSizeGroup="KeyWithSymbolAndText"
                       Link="Wibble"/>
-        <controls:Key Grid.Row="0" Grid.Column="3"
+        <controls:KeyPressKey Grid.Row="0" Grid.Column="3"
                       SymbolGeometry="{StaticResource CurrenciesIcon}"
-                      Text="{x:Static resx:Resources.CURRENCIES}"
+                      Text="KeyPress"
                       SharedSizeGroup="KeyWithSymbolAndText"
-                      Value="{x:Static models:KeyValues.Currencies1KeyboardKey}"/>
+                      Key="a"
+                      KeyPressType="Release"
+                      Delay="100"/>
         <controls:Key Grid.Row="1" Grid.Column="0"
                       SymbolGeometry="{StaticResource ConversationIcon}"
                       Text="{x:Static resx:Resources.CONVERSATION}"

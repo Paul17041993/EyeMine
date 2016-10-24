@@ -36,13 +36,13 @@ namespace JuliusSweetland.OptiKey.UI.Controls
             DependencyProperty.Register("Key", typeof(string), typeof(KeyPressKey), 
                                         new PropertyMetadata(default(string), OnKeyChanged));
 
-        public static readonly DependencyProperty TypeProperty =
-            DependencyProperty.Register("Type", typeof(KeyValuePress.KeyPressType), typeof(KeyPressKey),
-                                        new PropertyMetadata(default(KeyValuePress.KeyPressType), OnTypeChanged));
+        public static readonly DependencyProperty KeyPressTypeProperty =
+            DependencyProperty.Register("KeyPressType", typeof(KeyValuePress.KeyPressType), typeof(KeyPressKey),
+                                        new PropertyMetadata(default(KeyValuePress.KeyPressType), OnKeyPressTypeChanged));
 
         public static readonly DependencyProperty DelayProperty =
                     DependencyProperty.Register("Delay", typeof(int), typeof(KeyPressKey),
-                                                new PropertyMetadata(0, OnTypeChanged));
+                                                new PropertyMetadata(0, OnDelayChanged));
 
         public int Delay
         {
@@ -56,10 +56,10 @@ namespace JuliusSweetland.OptiKey.UI.Controls
             set { SetValue(KeyProperty, value); }
         }
 
-        public KeyValuePress.KeyPressType Type
+        public KeyValuePress.KeyPressType KeyPressType
         {
-            get { return (KeyValuePress.KeyPressType)GetValue(TypeProperty); }
-            set { SetValue(TypeProperty, value); }
+            get { return (KeyValuePress.KeyPressType)GetValue(KeyPressTypeProperty); }
+            set { SetValue(KeyPressTypeProperty, value); }
         }
 
         public override KeyValue Value
@@ -68,7 +68,7 @@ namespace JuliusSweetland.OptiKey.UI.Controls
             set { kv = value; }
         }
 
-        private static void OnTypeChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        private static void OnKeyPressTypeChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var senderAsKey = sender as KeyPressKey;
             if (senderAsKey != null)
