@@ -15,7 +15,7 @@ namespace JuliusSweetland.OptiKey.Models
     public class KeyValuePress : KeyValue, IEquatable<KeyValuePress>
     {
         
-        public enum KeyPressType { Press, Release, PressAndRelease = 0 };
+        public enum KeyPressType { PressAndRelease, Press, Release };
 
         private readonly string key; // letter, e.g. 'a', or string for function key e.g.'F2'
         private readonly int durationMs;
@@ -28,7 +28,7 @@ namespace JuliusSweetland.OptiKey.Models
             this.durationMs = 0; 
         }
 
-        public KeyValuePress(string key, KeyPressType type =  KeyPressType.PressAndRelease, int duration = 0)
+        public KeyValuePress(string key, KeyPressType type = default(KeyPressType), int duration = 0)
             : base()
         {
             this.key = key;
