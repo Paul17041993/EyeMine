@@ -328,6 +328,7 @@
     <Compile Include="UI\Controls\LinkKey.cs" />
     <Compile Include="UI\Controls\TextKey.cs" />
     <Compile Include="UI\Controls\CustomKeyboard.cs" />
+    <Compile Include="UI\Controls\CustomKeyboardSelector.cs" />
     <Compile Include="UI\Controls\ToastNotification.cs" />
     <Compile Include="UI\Controls\Cursor.cs" />
     <Compile Include="UI\Controls\ToastNotificationPopup.cs" />
@@ -387,6 +388,7 @@
       <DependentUpon>Language.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Views\Keyboards\Common\CustomKeyboard.xaml.cs" />
+    <Compile Include="UI\Views\Keyboards\Common\CustomKeyboardSelector.xaml.cs" />
     <Compile Include="UI\Views\Keyboards\Common\Minimised.xaml.cs">
       <DependentUpon>Minimised.xaml</DependentUpon>
     </Compile>
@@ -895,6 +897,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Views\Keyboards\Common\CustomKeyboard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+	<Page Include="UI\Views\Keyboards\Common\CustomKeyboardSelector.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

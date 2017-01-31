@@ -152,7 +152,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
 
             };
                         
-            Keyboard = new CustomKeyboard(backAction);
+            Keyboard = new CustomKeyboardSelector(backAction);
 
             // Set everything else appropriately
             keyStateService.KeyDownStates[KeyValues.LeftShiftKey].Value = KeyDownStates.Up;
