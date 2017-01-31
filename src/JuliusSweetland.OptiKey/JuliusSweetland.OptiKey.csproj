@@ -229,6 +229,7 @@
     <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="Models\ILastMouseActionStateManager.cs" />
     <Compile Include="Models\KeyboardOutputServiceState.cs" />
+    <Compile Include="Models\KeyboardSpec.cs" />
     <Compile Include="Models\KeyStateServiceState.cs" />
     <Compile Include="Models\KeyValuePress.cs" />
     <Compile Include="Models\KeyValueLink.cs" />
