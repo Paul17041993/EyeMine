@@ -54,14 +54,21 @@ namespace JuliusSweetland.OptiKey.UI.Views.Keyboards.Common
             return applicationDataPath;
         }
 
+        private int RowFromIndex(int index)
+        {
+            return index / this.mCols; // integer division
+        }
+
+        private int ColFromIndex(int index)
+        {
+            return index % this.mCols;
+        }
         private void AddKeyboardKey(string keyboardLink, int index) {
             LinkKey lKey = new LinkKey();
             lKey.Link = keyboardLink;
             lKey.SharedSizeGroup = "KeyboardKey";
-            lKey.Text = Path.GetFileNameWithoutExtension(keyboardLink); //TODO: extract name from xml, default to filename
-            int col = index % this.mCols;
-            int row = index / this.mCols; // integer division
-            this.AddKey(lKey, row, col);
+            lKey.Text = Path.GetFileNameWithoutExtension(keyboardLink); //TODO: extract name from xml, default to filename        
+            this.AddKey(lKey,  this.RowFromIndex(index),  this.ColFromIndex(index));
         }
 
         private void FindKeyboards()
@@ -112,27 +119,34 @@ namespace JuliusSweetland.OptiKey.UI.Views.Keyboards.Common
                 newKey.Value = KeyValues.BackFromKeyboardKey;
                 this.AddKey(newKey, this.mRows - 1, this.mCols - 1);
             }
-
-            // Empty grid case: add inactive key saying none found
-            if (mKeyboardFilenames.Count == 0)
-            {
-                Key newKey = new Key();
-                newKey.SharedSizeGroup = "BackButton";
-                newKey.Text = "No keyboards\nfound"; // TODO: resource string
-                this.AddKey(newKey, 1, 1);
-            }
-
-            // Add keyboard keys
+            
+            // Add keyboard keys, or blanks
             // TODO: fill in N-1th button with a key if there's exactly N-1 keyboards.
             int maxKeyboardsPerPage = this.mCols * this.mRows - 2;
             int totalNumKeyboards = mKeyboardFilenames.Count;
             int remainingKeyboards =  totalNumKeyboards - maxKeyboardsPerPage*mPageIndex;
             int nKBs = Math.Min(remainingKeyboards, maxKeyboardsPerPage);
-
-            for (int i = 0; i < nKBs; i++)
+            int firstKB = maxKeyboardsPerPage * mPageIndex;
+            for (int i = 0; i < maxKeyboardsPerPage; i++)
             {
-                string keyboardName = mKeyboardFilenames[i];
-                this.AddKeyboardKey(keyboardName, i);
+                if (i < nKBs)
+                {
+                    // Add key to link to keyboard
+                    string keyboardName = mKeyboardFilenames[firstKB + i];
+                    this.AddKeyboardKey(keyboardName, i);
+                }
+                else
+                {
+                    // Add empty/inactive key for consistent aesthetic
+                    Key newKey = new Key();
+                    if (i == 0)
+                    {
+                        // Special case for empty grid                       
+                        newKey.SharedSizeGroup = "BackButton";
+                        newKey.Text = "No keyboards\nfound"; // TODO: resource string   
+                    }
+                    this.AddKey(newKey, this.RowFromIndex(i), this.ColFromIndex(i));
+                }
             }
 
             // Add "more" key if required
