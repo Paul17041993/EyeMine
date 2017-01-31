@@ -113,6 +113,15 @@ namespace JuliusSweetland.OptiKey.UI.Views.Keyboards.Common
                 this.AddKey(newKey, this.mRows - 1, this.mCols - 1);
             }
 
+            // Empty grid case: add inactive key saying none found
+            if (mKeyboardFilenames.Count == 0)
+            {
+                Key newKey = new Key();
+                newKey.SharedSizeGroup = "BackButton";
+                newKey.Text = "No keyboards\nfound"; // TODO: resource string
+                this.AddKey(newKey, 1, 1);
+            }
+
             // Add keyboard keys
             // TODO: fill in N-1th button with a key if there's exactly N-1 keyboards.
             int maxKeyboardsPerPage = this.mCols * this.mRows - 2;
