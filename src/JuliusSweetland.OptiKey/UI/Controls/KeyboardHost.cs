@@ -394,7 +394,14 @@ namespace JuliusSweetland.OptiKey.UI.Controls
 
                     if (rect.Size.Width != 0 && rect.Size.Height != 0)
                     {
-                        pointToKeyValueMap.Add(rect, key.Value);
+                        if (pointToKeyValueMap.ContainsKey(rect))
+                        {
+                            Log.Error("Duplicate key, cannot add to map");
+                        }
+                        else
+                        {
+                            pointToKeyValueMap.Add(rect, key.Value);
+                        }
                     }
                 }
             }
