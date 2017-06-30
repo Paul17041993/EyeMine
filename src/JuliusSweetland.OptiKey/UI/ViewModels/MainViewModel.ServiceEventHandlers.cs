@@ -177,6 +177,7 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                     }
                     else
                     {
+                        // TODO: Shouldn't this take you to 'default' keyboard? (may not be alpha)
                         Keyboard = new Alpha();
                     }
                     break;

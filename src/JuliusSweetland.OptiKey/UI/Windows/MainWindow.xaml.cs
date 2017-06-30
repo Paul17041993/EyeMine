@@ -6,6 +6,7 @@ using JuliusSweetland.OptiKey.Extensions;
 using JuliusSweetland.OptiKey.Models;
 using JuliusSweetland.OptiKey.Services;
 using JuliusSweetland.OptiKey.Static;
+using JuliusSweetland.OptiKey.UI.ViewModels;
 using log4net;
 using Prism.Commands;
 using Prism.Interactivity.InteractionRequest;
@@ -25,6 +26,7 @@ namespace JuliusSweetland.OptiKey.UI.Windows
         private readonly IKeyStateService keyStateService;
         private readonly InteractionRequest<NotificationWithServicesAndState> managementWindowRequest;
         private readonly ICommand managementWindowRequestCommand;
+        private readonly ICommand backCommand;
         private readonly ICommand quitCommand;
 
         public MainWindow(
@@ -43,6 +45,7 @@ namespace JuliusSweetland.OptiKey.UI.Windows
             managementWindowRequest = new InteractionRequest<NotificationWithServicesAndState>();
             managementWindowRequestCommand = new DelegateCommand(RequestManagementWindow);
             quitCommand = new DelegateCommand(Quit);
+            backCommand = new DelegateCommand(Back);
 
             //Setup key binding (Alt-M and Shift-Alt-M) to open settings
             InputBindings.Add(new KeyBinding
@@ -66,6 +69,7 @@ namespace JuliusSweetland.OptiKey.UI.Windows
         public InteractionRequest<NotificationWithServicesAndState> ManagementWindowRequest { get { return managementWindowRequest; } }
         public ICommand ManagementWindowRequestCommand { get { return managementWindowRequestCommand; } }
         public ICommand QuitCommand { get { return quitCommand; } }
+        public ICommand BackCommand { get { return backCommand; } }
 
         private void RequestManagementWindow()
         {
@@ -100,6 +104,15 @@ namespace JuliusSweetland.OptiKey.UI.Windows
             {
                 Application.Current.Shutdown();
             }
+        }
+
+        private void Back()
+        {
+            var mainViewModel = MainView.DataContext as MainViewModel;
+            if (null != mainViewModel)
+            {
+                mainViewModel.BackFromKeyboard();   
+            }            
         }
     }
 }
