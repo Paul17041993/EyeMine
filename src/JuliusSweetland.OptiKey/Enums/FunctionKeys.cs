@@ -65,6 +65,7 @@
         LeftAlt,
         LeftCtrl,
         LeftShift,
+        RightShift,
         LeftWin,
         Menu,
         MenuKeyboard,
