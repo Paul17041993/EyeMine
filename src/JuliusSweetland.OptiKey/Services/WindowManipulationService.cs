@@ -32,6 +32,7 @@ namespace JuliusSweetland.OptiKey.Services
         private readonly Window window;
         private readonly IntPtr windowHandle;
         private Screen screen;
+        private Rect appBarBoundsInPx;
         private Rect screenBoundsInPx;
         private Rect screenBoundsInDp;
         private readonly Func<double> getOpacity;
@@ -1239,8 +1240,8 @@ namespace JuliusSweetland.OptiKey.Services
                 //Apply final size and position to the window. This is dispatched with ApplicationIdle priority 
                 //as WPF will send a resize after a new appbar is added. We need to apply the received size & position after this happens.
                 //RECT values are in pixels so I need to scale back to DIPs for WPF.
-                var rect = new Rect(finalDockLeftInDp, finalDockTopInDp, finalDockWidthInDp, finalDockHeightInDp);
-                window.Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new ApplySizeAndPositionDelegate(ApplyAndPersistSizeAndPosition), rect);
+                appBarBoundsInPx = new Rect(finalDockLeftInDp, finalDockTopInDp, finalDockWidthInDp, finalDockHeightInDp);
+                window.Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new ApplySizeAndPositionDelegate(ApplyAndPersistSizeAndPosition), appBarBoundsInPx);
             }
         }
 
