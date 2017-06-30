@@ -389,6 +389,24 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                         windowManipulationService.Restore();
                         mainWindowManipulationService.ResizeDockToFull();
                         break;
+
+                    case Enums.Keyboards.Minecraft:
+                        Keyboard = new Minecraft(() => Keyboard = new Menu(() => Keyboard = new Alpha()));
+                        windowManipulationService.Restore();
+                        mainWindowManipulationService.ResizeDockToFull();
+                        break;
+
+                    case Enums.Keyboards.Minecraft1:
+                        Keyboard = new Minecraft1(() => Keyboard = new Menu(() => Keyboard = new Alpha()));
+                        windowManipulationService.Restore();
+                        mainWindowManipulationService.ResizeDockToFull();
+                        break;
+
+                    case Enums.Keyboards.MinecraftSurvivalInventory:
+                        Keyboard = new MinecraftSurvivalInventory(() => Keyboard = new Menu(() => Keyboard = new Alpha()));
+                        windowManipulationService.Restore();
+                        mainWindowManipulationService.ResizeDockToFull();
+                        break;
                 }
             }
         }

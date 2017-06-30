@@ -320,6 +320,22 @@ namespace JuliusSweetland.OptiKey.UI.Controls
                 var kb = Keyboard as ViewModelKeyboards.CustomKeyboardSelector;
                 newContent = new CommonViews.CustomKeyboardSelector(kb.PageIndex) { DataContext = Keyboard };
             }
+            else if (Keyboard is ViewModelKeyboards.Minecraft)
+            {
+                newContent = new CommonViews.Minecraft { DataContext = Keyboard };
+            }
+            else if (Keyboard is ViewModelKeyboards.Minecraft1)
+            {
+                newContent = new CommonViews.Minecraft1 { DataContext = Keyboard };
+            }
+            else if (Keyboard is ViewModelKeyboards.Minecraft2)
+            {
+                newContent = new CommonViews.Minecraft2 { DataContext = Keyboard };
+            }
+            else if (Keyboard is ViewModelKeyboards.MinecraftSurvivalInventory)
+            {
+                newContent = new CommonViews.MinecraftSurvivalInventory { DataContext = Keyboard };
+            }
             Content = newContent;
         }
 
