@@ -65,6 +65,15 @@ namespace JuliusSweetland.OptiKey.Extensions
                 case FunctionKeys.F12:
                     return VirtualKeyCode.F12;
 
+                case FunctionKeys.F13:
+                    return VirtualKeyCode.F13;
+
+                case FunctionKeys.F14:
+                    return VirtualKeyCode.F14;
+
+                case FunctionKeys.F15:
+                    return VirtualKeyCode.F15;
+
                 case FunctionKeys.PrintScreen:
                     return VirtualKeyCode.SNAPSHOT; //This is not a typo
 
