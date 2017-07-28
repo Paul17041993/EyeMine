@@ -313,6 +313,12 @@ namespace JuliusSweetland.OptiKey.UI.ViewModels
                         mainWindowManipulationService.ResizeDockToFull();
                         break;
 
+                    case Enums.Keyboards.CustomKeyboard:
+                        Keyboard = new CustomKeyboardSelector(null, 0);
+                        windowManipulationService.Restore();
+                        mainWindowManipulationService.ResizeDockToFull();
+                        break;
+
                     case Enums.Keyboards.Diacritics1:
                         Keyboard = new Diacritics1();
                         windowManipulationService.Restore();
