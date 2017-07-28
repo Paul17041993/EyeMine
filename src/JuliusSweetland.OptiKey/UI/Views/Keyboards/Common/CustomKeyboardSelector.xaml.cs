@@ -32,7 +32,7 @@ namespace JuliusSweetland.OptiKey.UI.Views.Keyboards.Common
         private int pageIndex = 0;
 
         // TODO: Make user configurable?
-        private int mRows = 3;
+        private int mRows = 2;
         private int mCols = 4;
 
         #endregion
@@ -57,14 +57,14 @@ namespace JuliusSweetland.OptiKey.UI.Views.Keyboards.Common
             }
 
             // Add back key 
-            { 
+            /*{ 
                 Key newKey = new Key();
                 newKey.SharedSizeGroup = "BackButton";
                 newKey.SymbolGeometry = (System.Windows.Media.Geometry)App.Current.Resources["BackIcon"];
                 newKey.Text = JuliusSweetland.OptiKey.Properties.Resources.BACK;
                 newKey.Value = KeyValues.BackFromKeyboardKey;
                 this.AddKey(newKey, this.mRows - 1, this.mCols - 1);
-            }
+            }*/
 
             // Empty key for bottom left
             {
