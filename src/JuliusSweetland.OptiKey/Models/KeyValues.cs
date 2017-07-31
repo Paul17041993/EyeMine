@@ -303,7 +303,7 @@ namespace JuliusSweetland.OptiKey.Models
                     MouseMagneticCursorKey,
                     MouseMagnifierKey,
                     MouseMiddleDownUpKey,
-                    MouseRightDownUpKey,
+                   // MouseRightDownUpKey,
                     MultiKeySelectionIsOnKey,
                     SleepKey
                 };
